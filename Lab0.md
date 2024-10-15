@@ -10,7 +10,7 @@ Sử dụng kết hợp GitHub và PlantText để viết tài liệu thiết k�
 ## 3. Tìm hiểu sử dụng công cụ PlantText
 Sử dụng công cụ PlantText để vẽ Usecase diagram:
 
-![Diagram](https://www.planttext.com/api/plantuml/png/Z9AzQiCm4CTtFSNXgORc1K8msGs5WWbTXIqYOLiE-aWAfLE7hiqR94E75hfriYaTv1Vn4_GLUiWknSMOQX3YVtU_-z9NyxdMXYfZou8GdGi9gjAC49gQIa6GS7UI7FR2lSe0g8PaysEAkJkdt8in8OgbXifjmI1edze7kONSVLn2U_HloRlwRHV07G4y_aesi5X4S77bJM0rKvAM3FRk13kgzQ5IMUWzuv6ZuUuTYGOh7U2OA2JUSnxMOuRg-ef2MC9g9MHQs8n5qGWodMW4ySAOq2F-9F4nrnPd22Kg1d8qlDZ9x5EXWtPhk_hPp4NzLdY3ou5IuEvqrnon0z4rZnARghhwBFx7c1tLFI5h9ZFyDzy0003__mC0)
+![Diagram](https://www.planttext.com/api/plantuml/png/Z9AzQiCm4CTtFSNXgORc1K8msGs5WWbTXIqYOLiE-aWAfLE7hiqR94E75hfriYaTv1Vn4_GLUiWknSMOQX3YVtU_-z9NyxdMXYfZouBeN4XGbMQ4qDHK2eA4kvFai1VkLGP0DIIR7rFCtJdbNem9KImrL6uB1a7xr3x8BUJkunBQetzBtjLlkm3k2E3nLxA1nIA2Yojl0gkPahHai7Sds56j3vNAGkyPZnmDT-z8D5Zf0CT48V6Uyx0UCrJNLnJ24bOh8TF2PYoAHf3fH2E85yQ47l4dYO-vjZX3A54naAFXnKvcdmeTj5lRrSzcBkgtmXjS3fG2TwUxveWTYAvvbDXKrTLdyJ_6xAZk2LapcU6t-GO00F__0m00)
 
 Sử dụng công cụ PlantText để vẽ Activity diagram:
 
