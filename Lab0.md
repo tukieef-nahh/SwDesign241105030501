@@ -1,4 +1,4 @@
-# Kết quả bài thực hành Lab0
+# Bài thực hành Lab0
 Mục đích
 Sử dụng kết hợp GitHub và PlantText để viết tài liệu thiết kế phần mềm.
 
