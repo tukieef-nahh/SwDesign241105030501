@@ -10,6 +10,20 @@ Phân tích kiến trúc và ca sử dụng hệ thống "Payroll System" trong 
 
 ## ⭐️ 2. Cơ chế phân tích 🔬
 
+👉 <b> Cơ chế cần giải quyết trong bài toán: </b>
+
+<b> Cơ chế xử lý Payment (Thanh toán): </b>
+</br> - Tạo giao dịch thanh toán cho nhân viên.
+</br> - Quản lý các loại thanh toán khác nhau (chuyển khoản, tiền mặt, thẻ tín dụng).
+</br> - Tính toán tiền lương dựa trên thời gian làm việc (thông qua Timecard).
+
+<b> Cơ chế xử lý Timecard (Thẻ chấm công): </b>
+</br> - Ghi nhận thời gian làm việc của nhân viên hàng ngày.
+</br> - Quản lý và tính toán tổng số giờ làm việc trong tuần/tháng.
+</br> - Kết hợp thông tin Timecard với thanh toán để tính lương.
+
+👉 </br> Lý do chọn các cơ chế: </b>
+Những cơ chế này đảm bảo giải quyết bài toán chính là thanh toán lương cho nhân viên dựa trên thông tin thời gian làm việc đã được ghi nhận.
 
 ## ⭐️ 3. Phân tích ca sử dụng Payment 📑
 👉 <b> Lớp phân tích cho ca sử dụng Payment: </b>
