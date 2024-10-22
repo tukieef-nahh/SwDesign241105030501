@@ -6,7 +6,6 @@ Phân tích kiến trúc và ca sử dụng hệ thống "Payroll System" trong 
 </br>📎 https://drive.google.com/file/d/1CSNZ0j5kiMHLyDXOxk1UHgETDVAHx6eP/view 
 
 ## ⭐️ 1. Phân tích kiến trúc 📈
-
 #### 👉 Yêu cầu của bài toán:
 Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán lương) với các chức năng chính như:
 - Nhân viên chọn phương thức thanh toán (<code>Select Payment</code>).
@@ -20,21 +19,22 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
   + Giao diện người dùng cho nhân viên và quản trị viên.
   + Các thành phần liên quan đến việc nhập thông tin chấm công, chọn phương thức thanh toán, thời gian làm việc và thực hiện các tác vụ khác.
 - <b> Business Logic Layer (Tầng xử lý nghiệp vụ): </b>
-  + Chứa các lớp xử lý logic nghiệp vụ như <code>PaymentManager</code> (xử lý chọn phương thức thanh toán), <code>TimecardManager</code> (xử lý cập nhật chấm công), và các quy trình tính toán lương dựa trên thời gian làm việc và thông tin chấm công.
+  + Chứa các lớp xử lý logic nghiệp vụ như <code>PaymentController</code> (xử lý chọn phương thức thanh toán), <code>TimecardManager</code> (xử lý cập nhật chấm công), và các quy trình tính toán lương dựa trên thời gian làm việc và thông tin chấm công.
   + Tầng này chính là nơi chứa tất cả các quy tắc và nghiệp vụ của hệ thống.
 - <b> Data Layer (Tầng dữ liệu): </b>
   + Kết nối với cơ sở dữ liệu như <code>Project Management Database</code> và <code>Payroll Database</code> để lưu trữ thông tin chấm công, thanh toán, và nhân viên.
   + Tầng này chịu trách nhiệm lưu trữ và truy xuất dữ liệu.
 
-#### 👉 Lý do chọn kiến trúc <code>three-tier architecture</code>:
+#### 👉 Lý do lựa chọn và ý nghĩa của kiến trúc <code>three-tier architecture</code>:
 - Tính mở rộng: Kiến trúc ba tầng dễ dàng mở rộng và phát triển thêm tính năng hoặc tích hợp với các hệ thống khác.
 - Bảo trì dễ dàng: Các thay đổi trong một tầng không ảnh hưởng trực tiếp đến tầng khác, giúp bảo trì dễ dàng hơn.
 - Tăng cường bảo mật: Tầng Business Logic có thể đảm nhận vai trò kiểm tra bảo mật và xác thực người dùng.
 
+#### 👉 Package diagram mô tả kiến trúc:
+
+
 ## ⭐️ 2. Cơ chế phân tích 🔬
-
 #### 👉 Cơ chế cần giải quyết trong bài toán:
-
 - <b> Cơ chế xác thực (Authentication): </b> Đảm bảo chỉ có nhân viên đăng nhập đúng thông tin mới có thể truy cập vào hệ thống Payroll.
 - <b> Cơ chế phân quyền (Authorization): </b> Xác định quyền hạn của các đối tượng trong hệ thống, như Payroll Administrator có quyền thêm/sửa/xóa thông tin nhân viên.
 - <b> Cơ chế tính toán lương (Payroll Calculation): </b> Tính toán lương cho nhân viên dựa trên loại nhân viên (lương theo giờ, lương theo tháng, hoặc lương kèm hoa hồng).
@@ -56,29 +56,67 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 👉 <b> Lý do chọn các cơ chế: </b>
 Những cơ chế này đảm bảo giải quyết bài toán chính là thanh toán lương cho nhân viên dựa trên thông tin thời gian làm việc đã được ghi nhận.
 
-## ⭐️ 3. Phân tích ca sử dụng Payment 📑
-#### 👉 Lớp phân tích cho ca sử dụng Payment: </b>
-- <b> Employee: </b> Người dùng chọn phương thức thanh toán.
-- <b> PaymentMethod:: </b> Chứa thông tin về phương thức thanh toán (direct deposit, mail, pick-up).
-- <b> PaymentManager: </b>  Xử lý logic liên quan đến chọn và thay đổi phương thức thanh toán.
+## ⭐️ 3. Phân tích ca sử dụng Select Payment 📑
+#### 👉 Các lớp phân tích cho ca sử dụng Select Payment: </b>
+- <b> Entity classes: </b>
+  + <b> Employee: </b> Người dùng chọn phương thức thanh toán, bao gồm các thuộc tính như: employeeID, name, PaymentMethod, address, bankName, accountNumber.
+  + <b> PaymentMethod: </b> Lớp này lưu trữ thông tin về phương thức thanh toán mà nhân viên đã chọn (ví dụ: "pick up", "mail", "direct deposit").
+- <b> Boundary classes: </b>
+  + <b> PaymentBoundaryForm: </b> Lớp này chịu trách nhiệm giao tiếp với người dùng để thu thập thông tin phương thức thanh toán và hiển thị các yêu cầu hoặc lỗi.
+- <b> Control classes: </b>
+  + <b> PaymentController: </b> Lớp này điều phối luồng sự kiện giữa người dùng và hệ thống. Nó sẽ xác định phương thức thanh toán và cập nhật thông tin nhân viên sau khi nhận được thông tin đầu vào.
 
 👉 <b> Sequence diagram cho ca sử dụng Payment: </b>
-- <code>Employee</code> tương tác với <code>PaymentManager</code> để chọn phương thức thanh toán.
-- <code>PaymentManager</code> gọi lớp <code>PaymentMethod</code> để lưu lại lựa chọn phương thức thanh toán của nhân viên.
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/X91D2i9038NtEKNelXVeGWhYib0ekW-Tg8FpnqmKUZON7iahs8xJZHHS9NdvNXBoVhxQ91JbRWr0kcc7qIS6e55yn8CDna_C46P4ZpgG4wnwcYmxwSZHXME5bB3ljX6MgrU5o3d0EXFhtImsEB3XKR0ui61zz-tdgi4J6Qr8-0ysq6C3oH7hic_ltLb7IwAzo_vPNszgVinu3CjM1IqxjRpe0m00__y30000" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/d9GzKiCm48NxFSMMKAJWjr3114XImKo630TGh2NHH9Q4j6R6PwFWI5m1EOaJx1ZouswjVKzlFrd-_lpgHvQ1Yzm0n8Ms65ma09cn2pZClN4b4KnTOPKC9OvbcPFb1rTKvSY5739dEJXJBpskIaC1KgMvtBWCboL0NMFlhiDFu8N09pT3RM5tzPTckv70Iu4lz5vGP8naA6FqgoRCYUTEmOwcCce64tWbS4ISpP7gX4goX6RR7mckgmHS1DiITsxSDVMDm86EtiXoazrvrix6lS1k1Kx-cte_lmbPjIP7gkq2qZ2ETRRe5Rv-X-avYEchJnYePObdbHqM_Xp8HC9dgKs7SojtRRqzQwbKe1YNcdsGni5zQ4KDpN5yEfGdpRwS5l5-PRT6CD2XEa15taNDfy2OIhj8Uaxknn7P4Hw7vI_vIMoQ618Rcxw_W-zGwdZJ8PVLjKcMCSePGJzvLB-t7m000F__0m00" alt="Diagram">
 </p>
 
-- Biểu đồ sequence sẽ mô tả quá trình từ khi nhân viên chọn phương thức thanh toán và hệ thống cập nhật thông tin vào cơ sở dữ liệu.
+👉 <b> Nhiệm vụ và các thuộc tính của các lớp phân tích: </b>
+- <b> Employee (Entity): </b> Lưu trữ và cung cấp thông tin của nhân viên như tên, phương thức thanh toán, địa chỉ và chi tiết ngân hàng. Các thuộc tính:
+  + <code>employeeID</code>: ID của nhân viên.
+  + <code>name</code>: Tên nhân viên.
+  + <code>paymentMethod</code>: Phương thức thanh toán hiện tại (Pick-up, Mail, Direct Deposit).
+  + <code>address</code>: Địa chỉ (nếu chọn Mail).
+  + <code>bankName</code>: Tên ngân hàng (nếu chọn Direct Deposit).
+  + <code>accountNumber</code>: Số tài khoản ngân hàng.
+ 
+- <b> PaymentMethod (Entity): </b> Lưu trữ thông tin về phương thức thanh toán mà nhân viên chọn. Các thuộc tính:
+  + <code>methodType:</code> Loại phương thức thanh toán (Pick up, Mail, Direct Deposit).
 
-👉 <b> Nhiệm vụ của các lớp: </b>
-- <b> Employee: </b> Lựa chọn, cung cấp thông tin và xác nhận phương thức thanh toán.
-- <b> PaymentMethod: </b> Chứa thông tin về phương thức thanh toán của nhân viên.
-- <b> PaymentManager: </b> Điều phối xử lý và lưu lại phương thức thanh toán được chọn.
+- <b> PaymentBoundaryForm (Boundary): </b> Tương tác với người dùng, lấy thông tin đầu vào về phương thức thanh toán và hiển thị yêu cầu hoặc lỗi.
+  + Các thuộc tính:
+    - <code>employeeInput:</code> Input từ người dùng.
+  + Các phương thức:
+    - <code>getMethod():</code> Lấy phương thức thanh toán từ người dùng.
+    - <code>displayError():</code> Hiển thị thông báo lỗi nếu không tìm thấy nhân viên.
 
+- <b> PaymentController (Control): </b> Điều phối giữa PaymentBoudaryForm và Employee, thực hiện cập nhật phương thức thanh toán và xử lý logic chính.
+  + Thuộc tính:
+    - <code>currentEmployee:</code> Thông tin nhân viên hiện tại.
+  + Phương thức:
+    - <code>selectMethod():</code> Điều khiển luồng chọn phương thức thanh toán.
+    - <code>updatePayment():</code> Cập nhật phương thức thanh toán trong cơ sở dữ liệu.
+
+👉 <b> Xác định quan hệ giữa các lớp phân tích: </b>
+- PaymentBoundaryForm tương tác với PaymentController để gửi và nhận dữ liệu, trong khi PaymentController sẽ tương tác với Employee và PaymentMethod để truy xuất và cập nhật thông tin cần thiết.
+
+👉 <b> Class diagram mô tả các lớp phân tích và giải thích: </b>
+<p align="center">
+  <img src="https://www.planttext.com/api/plantuml/png/T98zRW8n48Lxdy9bAFOA22biGG6Y20SOx4b0-4ypus8LvMGfE5Aka8KrNhIRkBAV_JxFFFld-xfY0PBidL9yEGTDaL4fuu1Pxw7p6EImqPzAzwFHw9EB7U8cf2ntJUiFb2tAATgNHL7icPE3hYMAr8jV4zvh34BHEQJADPcetsaBld0O7PefF2SBWWNrJ7-OvyMkYn30OvccmJ-mYmRM4ZANrH72PJSQm9YOW-ooFoADdJykNOF0fCIsPlKU_qXXkBeMw-_Bjoxzqtnl7v-ZQPRpCDKytjkvccdDvybT-bzXiBSly0i00F__0m00" alt="Diagram">
+</p>
+
+- <b> Giải thích: </b>
+  + <i> PaymentBoundaryForm: </i> Lớp boundary chịu trách nhiệm giao tiếp với nhân viên, thu thập dữ liệu đầu vào và hiển thị các thông báo lỗi hoặc yêu cầu. Lớp này không thực hiện bất kỳ logic nào liên quan đến nghiệp vụ.
+
+  + <i> PaymentController: </i> Đây là lớp điều khiển, đóng vai trò điều phối toàn bộ luồng sự kiện giữa PaymentUI và Employee. Nó kiểm soát luồng xử lý từ việc yêu cầu phương thức thanh toán cho đến khi cập nhật thông tin vào cơ sở dữ liệu.
+
+  + <i> Employee: </i> Lớp thực thể quản lý thông tin của nhân viên, bao gồm các thuộc tính và phương thức để truy xuất và cập nhật thông tin.
+
+  + <i> PaymentMethod: </i> Lớp lưu trữ thông tin về phương thức thanh toán. Tùy vào phương thức thanh toán mà nhân viên chọn, lớp này sẽ lưu trữ thông tin phù hợp.
+  
 ## ⭐️ 4. Phân tích ca sử dụng Maintain Timecard 📇
-#### 👉 Lớp phân tích cho ca sử dụng Maintain Timecard:
+#### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:
 - <b> Employee: </b> Nhân viên nhập thông tin chấm công.
 - <b> Timecard: </b> Lưu trữ và xử lý dữ liệu thời gian làm việc.
 - <b> TimecardManager: </b> Xử lý logic cập nhật thông tin thời gian làm việc.
@@ -93,17 +131,23 @@ Những cơ chế này đảm bảo giải quyết bài toán chính là thanh t
 
 - Biểu đồ sequence sẽ mô tả quá trình từ khi người dùng nhập thông tin <code>Timecard</code> thông qua <code>TimecardManager</code>, sau đó lưu dữ liệu vào <code>Timecard</code>.
 
-👉 <b> Nhiệm vụ của các lớp: </b>
+👉 <b> Nhiệm vụ của các lớp phân tích: </b>
 - <b> Employee: </b> Nhân viên nhập và gửi thông tin chấm công hàng ngày.
 - <b> Timecard: </b> Lưu trữ thời gian làm việc theo ngày, tuần.
 - <b> TimecardManager: </b> Xử lý việc lưu trữ và kiểm tra thông tin thời gian làm việc.
 
+👉 <b> Xác định quan hệ giữa các lớp phân tích: </b>
+-
+
+👉 <b> Class diagram mô tả các lớp phân tích và giải thích: </b>
+- 
+
 ## ⭐️ 5. Hợp nhất kết quả phân tích 📁
 #### 👉 Hợp nhất các ca sử dụng:
 - <b> Employee: </b> Cho phép nhân viên quản lý thông tin cá nhân như cập nhật chấm công thời gian làm việc và phương thức thanh toán.
-- <b> PaymentMethod: </b> Lớp chứa thông tin phương thức thanh toán (như direct deposit, mail, pick-up) và chứa thông tin chi tiết về lựa chọn của nhân viên.
+- <b> PaymentMethod: </b> Lớp chứa thông tin phương thức thanh toán (như "direct deposit", "mail", "pick up") và chứa thông tin chi tiết về lựa chọn của nhân viên.
 - <b> Timecard: </b> Đảm bảo các lớp xử lý chỉ cho phép nhân viên tương tác với dữ liệu cá nhân của họ, chứa thông tin chi tiết về thời gian làm việc, ngày giờ mà nhân viên đã làm trong kỳ tính lương.
-- <b> PaymentManager: </b> Chịu trách nhiệm quản lý các yêu cầu liên quan đến phương thức thanh toán của nhân viên.
+- <b> PaymentController: </b> Chịu trách nhiệm quản lý các yêu cầu liên quan đến phương thức thanh toán của nhân viên.
 - <b> TimecardManager: </b> Chịu trách nhiệm xử lý các yêu cầu liên quan đến việc chấm công của nhân viên.
 
 #### ⭐️ <i> From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111 </i> 💙
