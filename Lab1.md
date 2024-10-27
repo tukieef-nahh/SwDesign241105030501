@@ -222,7 +222,7 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 👉 <b> Hợp nhất các lớp phân tích: </b>
 - <b> Lớp chung: </b>
   + <code>Employee:</code> Lớp nhân viên cần thiết trong cả hai ca sử dụng để lưu trữ thông tin về phương thức thanh toán cũng như timecard.
-- <b> Điểm hợp nhất: </b>ư
+- <b> Điểm hợp nhất: </b>
   + Sau hợp nhất, lớp Employee không chỉ lưu trữ thông tin về phương thức thanh toán mà còn quản lý thông tin liên quan đến timecard.
   + Hợp nhất thông tin giúp tránh việc trùng lặp thông tin và giảm thiểu các quy trình phức tạp. Nhân viên có thể dễ dàng truy cập thông tin về thời gian làm việc và phương thức thanh toán mà không cần phải tương tác với nhiều lớp khác nhau.
   + Có thể kết hợp giao diện người dùng trong một module như EmployeeBoundaryForm, cung cấp cả chức năng chọn phương thức thanh toán và cập nhật timecard.
