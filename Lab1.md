@@ -20,20 +20,21 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
   + Giao diện người dùng cho nhân viên và quản trị viên.
   + Các thành phần liên quan đến việc nhập thông tin chấm công, chọn phương thức thanh toán, thời gian làm việc và thực hiện các tác vụ khác.
 - <b> Business Logic Layer (Tầng xử lý nghiệp vụ): </b>
-  + Chứa các lớp xử lý logic nghiệp vụ như <code>PaymentController</code> (xử lý chọn phương thức thanh toán), <code>TimecardManager</code> (xử lý cập nhật chấm công), và các quy trình tính toán lương dựa trên thời gian làm việc và thông tin chấm công.
-  + Tầng này chính là nơi chứa tất cả các quy tắc và nghiệp vụ của hệ thống.
+  + Chứa các lớp xử lý logic nghiệp vụ như <code>PaymentController</code> (xử lý chọn phương thức thanh toán), <code>TimecardController</code> (Chịu trách nhiệm quản lý và cập nhật thông tin timecard và đảm bảo tính chính xác của tổng giờ làm việc, ngăn ngừa việc vượt quá giờ giới hạn cho từng nhân viên).
+  + Tầng này giúp duy trì tính nhất quán của các quy tắc nghiệp vụ, làm rõ ràng và tập trung vào xử lý logic mà không ảnh hưởng tới giao diện hoặc tầng dữ liệu.
 - <b> Data Layer (Tầng dữ liệu): </b>
   + Kết nối với cơ sở dữ liệu như <code>Project Management Database</code> và <code>Payroll Database</code> để lưu trữ thông tin chấm công, thanh toán, và nhân viên.
-  + Tầng này chịu trách nhiệm lưu trữ và truy xuất dữ liệu.
+  + Tầng này đóng vai trò là lớp giao tiếp với cơ sở dữ liệu, cung cấp các thao tác lưu trữ và truy xuất dữ liệu cho tầng Business Logic.
 
 #### 👉 Lý do lựa chọn và ý nghĩa của kiến trúc <code>three-tier architecture</code>:
 - <b> Tính mở rộng: </b> Kiến trúc ba tầng dễ dàng mở rộng và phát triển thêm tính năng hoặc tích hợp với các hệ thống khác.
 - <b> Bảo trì dễ dàng: </b> Các thay đổi trong một tầng không ảnh hưởng trực tiếp đến tầng khác, giúp bảo trì dễ dàng hơn.
 - <b> Tăng cường bảo mật: </b> Tầng Business Logic có thể đảm nhận vai trò kiểm tra bảo mật và xác thực người dùng.
+- <b> Độ tin cậy và hiệu quả: </b> Kiến trúc ba tầng giúp xử lý các tác vụ nghiệp vụ phức tạp mà không ảnh hưởng đến tầng giao diện người dùng hay tầng dữ liệu.
 
 #### 👉 Package diagram mô tả kiến trúc:
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/Z5QzZjGm4Exp5DOs_4Zx0XJeTDmXa6vFLvn4WIXcdM5ZDh73s5uKeQkfgQbu0XvW2mgUP9-0Ly29avoTE7UuM6d7CzytFzzO-NlyVQODaB5LcUcza8oKnYohWUzXXsnrGwXH6Z12INO53TAAVSsOExm4hTcjg903vUVAoXoeUQsewXtyoOMkIsW6lwVFWhiTchUojYOoQhkjX9duttM_0UyDD9NBQu5spR2gIzKWTlWnvGPDeU94-YGlYHGjCLxsY6cQYy0eeSBWR-rJzRI17VBSDLS7bYt8_NKS39ox4isrhRP8WPrR8WSwj2ckS4Zr0Wn4TTew1uENOsy-gh7Qks3evrOBwL9ZLsed-4DZtu1q4HHDt9EyKPPqH7w0KhGtIIaafpuMb0w1mnHhIIQlb3IaoZBAT6pYq8yG6qlaAQNuudhOaNNEw4CZjgeptJRr8qGn7AbFpY42ghqjqbnlcwY75q0x3CGJOG_DYy1DRupGkoV2gId4HfbFB4KxydUAzfY__x2GXOvk7AwnuGPu6HYyXuwLsIewfSVMlWMDRj3IjQ5zh499Sc-UxdniJecd5Ss07I5gesYGGR17_X0Q4dX8tCyv_Dpy7hNE3x3rOrzaczrtlNl2DgVZTy4-Mv2iE1s_iPqu7Ny1utz-SbQUZZ_gBFcAhzSlPtl-WgsiHhrYMUe1RYFc6pV4PECBke3i-g6uS8FNx8imXIE98fB8GXeau6OCoQR0pzVhUwMxYAgpjoLCFPNp7FOjcSuyWo2lVkFdrRO9p7mAI6NGmYMaFElw98F7GY8LBmVqwz05BSholyApC_Swj9yK_m000F__0m00" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/f5PTRXen47xVKrXveX9m05H5AI5L8eK8DPNwK5MHiIVWuhMt_g555IVhGu_KAzJBxeBNEvkY50cqUBxnp3V-Phn_Vls-ieuQvtEPPNOZ537QGfOLb6te2iZ5me05vQWJMZtTqnsO2_8p8-739BMMBEWk3_QfzefJitklJLxRgu-1Rnwigs5pS6lD1sycPAi5Zs1Ss4BItQDd3AoTXs-8te-xCKQR1WNbdmbvT4QeLTUbpc1EXNp7UQ1ZaNrhq9IgpGnSWBP1-ooY_57amAZX_-BSuExKi-wdqg06pGDnzSDvx2lQv524_wxh1w1SAtbcKlji7obbwgrG8S3JlLu9ze9MhhLoHai9fbKr2n9O8XJ8YxjP_z7wWbC7BxWCINvOFVsdbGHE2yjmv0yqXmZ2M3XPz-3p9Q2wGjNGmyf0S8Sj72kQKceC7Lgunv2mDJKhQ6St96ljJM0rfyNRMN0U4g7SPRTYrYzpuNgJIT1RAaMPocsvUPg7quxAsofi21QybrfBe0hHHaY9OeguoGkfTm1HoKQa5ITQznQCYaugCXLXi-_QSDGKgGEn9uA8BAaoOYTC8f6TUMD2qARE22AdFqwrYqekG_EeGKfrs67OFQmLTATi4hPiiWJKxWz4CD2Qd4crK7myH5_HNKSsr-qYedmOLP-qsSorgKMwxXSaqhGjtJKZ3XLVdoWFjsVPSHDI_iOUYgFhXmpBf85__f9sRAoXgCzjYSHYEuyfj-fo1sa2hHeiZFuQ1cwh14MrXZAjRJqTWKsbqo3elaMCiHU7qUYIODV8k7DpO3kYztBlbjsvdMNdnJxiUPfeusQ8uUx8_P3u7s-0L_hN1vbbLq5ovOlSNm000F__0m00" alt="Diagram">
 </p>
 
 ## ⭐️ 2. Cơ chế phân tích 🔬
@@ -73,51 +74,56 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 #### 👉 Các lớp phân tích cho ca sử dụng Select Payment: </b>
 - <b> Entity classes: </b>
   + <b> Employee: </b> Người dùng chọn phương thức thanh toán, bao gồm các thuộc tính như: <code>employeeID</code>, <code>name</code>, <code>PaymentMethod</code>, <code>address</code>, <code>bankName</code>, <code>accountNumber</code>.
-  + <b> PaymentMethod: </b> Lớp này lưu trữ thông tin về phương thức thanh toán mà nhân viên đã chọn (ví dụ: <code>Pick up</code>, <code>Mail</code>, <code>Direct deposit</code>).
+
 - <b> Boundary classes: </b>
-  + <b> PaymentBoundaryForm: </b> Lớp này chịu trách nhiệm giao tiếp với người dùng để thu thập thông tin phương thức thanh toán và hiển thị các yêu cầu hoặc lỗi.
+  + <b> PaymentBoundaryForm: </b> Lớp này chịu trách nhiệm tương tác với người dùng để thu thập thông tin liên quan đến phương thức thanh toán và hiển thị các yêu cầu hoặc lỗi.
+
 - <b> Control classes: </b>
-  + <b> PaymentController: </b> Lớp này điều phối luồng sự kiện giữa người dùng và hệ thống. Nó sẽ xác định phương thức thanh toán và cập nhật thông tin nhân viên sau khi nhận được thông tin đầu vào.
+  + <b> PaymentController: </b> Lớp này điều phối luồng sự kiện giữa người dùng và hệ thống, xử lý logic nghiệp vụ để cập nhật phương thức thanh toán của nhân viên.
 
 👉 <b> Sequence diagram cho ca sử dụng Payment: </b>
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/b9HFKi8m58VtESLRwW9cfFWl2mSLMEaCe-C1GlE436aIazIPdis5H_8A9a2Hba9hTw_9xylBbxG_NzyZvvdrUIO9SIkXm6g7XB3KQmkJp4XT89AvpXLdje0PAp9K_a7diPngcv5KAs-rB8SUDwL4Iq8bVB6ZJDOb8MKDlRi67eKB2azw0KAHmz6zpDz250OKNl0ZH-V1eSJKWzbCWWpzKdDoa8cWQcCK4WfJzEaIiEoGCyz8TTgH3eQn0vzRLGitBjoqwqiAO-6CPCMkTssyqCgr2hkYy7fgr-t-hYD1yQqyv7KGOTB3JAIhNcxATn2UJbfl-k54tqpGWJKkd4KcvEQSe7G8pqp81doj_v8VoOF8Be-USMxHkNMqpLcCXbipi_fJSAn4ErkBZ6HhhW7GPcNG7nxriZO1SB-XRlMCXOs7pD5e9_p_H2NxekPChGB6XqMwsahsRHta_w4isIaxHcdpbfpmLbKKlAbmUJj_WxSKmgHtOJCMlxn0TOuja8m29luXVm400F__0m00" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/b9H1Rjim44NtFCL0gnX834HAsqIB8asT00LgDq1EG9CJXx14gYHLG6VheaVg5JgKB9bohCGrODaavl-P_oJgx-y_jyvpw-koOCnjbGPh73B6XJSMxikgC0qYS0TOLcnjQYsvRU2HDoLglqJ_OkJTRlV1s39KzbLC6EsjASRLNxlD0cse5SEAKONopRXdkyKOzOQBpuCnv72PmtUpsQ04fRq1_uBW6kUnF5ARvl2ZGWt94nOeV3yETFCa-rGasyz3mYm7rqf60SwemxV5Z4Mb9DnDdyDL3izAopv6NyruuVVP7a9B1lGPkqHJVvXJHei_QtG7_MUjy7NEZq5HMVDBIJoccCpvAGWTQZbMLV6gisWl8KdogCJsegwITkTra077TV2kAydzmKo3movEuH2I9LV5b6MKz7gUHdI2w8kK5ftR9JtE9wZIWT1nrIIZ8CuwIh6ITx-pzp6aywi946teSnXPTJWMoeO7Te6LSSgV12QBmDnnlLsW9_ltm6GHc5YrflyhNY9D9mG9_AekrsXFufNrlFxBS99VDidlWD8vlDc41c9ldxoR7AHoLS6Rfre8kYLB-l8D4iFsjWodU6NyQISv7HplhJMszqi69qrEpq51fo4CU4kNy4h-1m00__y30000" alt="Diagram">
 </p>
 
 👉 <b> Nhiệm vụ và các thuộc tính của các lớp phân tích: </b>
-- <b> Employee (Entity): </b> Lưu trữ và cung cấp thông tin của nhân viên như tên, phương thức thanh toán, địa chỉ và chi tiết ngân hàng. Các thuộc tính:
-  + <code>employeeID</code>: ID của nhân viên.
-  + <code>name</code>: Tên nhân viên.
-  + <code>paymentMethod</code>: Phương thức thanh toán hiện tại (<code>Pick-up</code>, <code>Mail</code>, <code>Direct Deposit</code>).
-  + <code>address</code>: Địa chỉ (nếu chọn <code>Mail</code>).
-  + <code>bankName</code>: Tên ngân hàng (nếu chọn <code>Direct Deposit</code>).
-  + <code>accountNumber</code>: Số tài khoản ngân hàng.
- 
-- <b> PaymentMethod (Entity): </b> Lưu trữ thông tin về phương thức thanh toán mà nhân viên chọn. Các thuộc tính:
-  + <code>methodType:</code> Loại phương thức thanh toán (<code>Pick-up</code>, <code>Mail</code>, <code>Direct Deposit</code>).
+- <b> Employee (Entity): </b> Lưu trữ và cung cấp thông tin của nhân viên như tên, phương thức thanh toán, địa chỉ và chi tiết ngân hàng.
+  + Các thuộc tính:
+    - <code>empID</code>: ID của nhân viên.
+    - <code>name</code>: Tên nhân viên.
+    - <code>paymentMethod</code>: Phương thức thanh toán hiện tại của nhân viên (<code>Pick up</code>, <code>Mail</code>, <code>Direct deposit</code>).
+    - <code>address</code>: Địa chỉ (nếu chọn <code>Mail</code>).
+    - <code>bankName</code>: Tên ngân hàng (nếu chọn <code>Direct Deposit</code>).
+    - <code>accountNumber</code>: Số tài khoản ngân hàng.
+    - <code>username</code>: username của tài khoản nhân viên.
+    - <code>password</code>: password của tài khoản nhân viên.
+  + Các phương thức:
+    - <code>getPaymentMethod()</code>: Trả về phương thức thanh toán hiện tại của nhân viên.
+    - <code>setPaymentMethod(method)</code>: Đặt phương thức thanh toán cho nhân viên, tham số method là loại thanh toán được chọn.
+    - <code>setMailAddress(address)</code>: Đặt địa chỉ nhận phiếu lương khi nhân viên chọn phương thức thanh toán là <code>Mail</code>.
+    - <code>setBankDetails(bankName, accountNumber)</code>: Đặt tên ngân hàng và số tài khoản khi nhân viên chọn phương thức thanh toán là <code>Direct deposit</code>.
 
 - <b> PaymentBoundaryForm (Boundary): </b> Tương tác với người dùng, lấy thông tin đầu vào về phương thức thanh toán và hiển thị yêu cầu hoặc lỗi.
-  + Các thuộc tính:
-    - <code>employeeInput:</code> Input từ người dùng.
   + Các phương thức:
-    - <code>getMethod():</code> Lấy phương thức thanh toán từ người dùng.
-    - <code>displayError():</code> Hiển thị thông báo lỗi nếu không tìm thấy nhân viên.
+    - <code>requestPaymentMethod()</code>: Yêu cầu nhân viên chọn phương thức thanh toán mong muốn.
+    - <code>displaySuccessMessage()</code>: Hiển thị thông báo thành công khi phương thức thanh toán được cập nhật.
+    - <code>displayErrorMessage(error)</code>: Hiển thị thông báo lỗi với nội dung lỗi được truyền vào qua tham số error.
+    - <code>requestMailAddress()</code>: Yêu cầu nhân viên nhập địa chỉ gửi phiếu lương khi chọn phương thức thanh toán <code>Mail</code>.
+    - <code>requestBankDetails()</code>: Yêu cầu nhân viên cung cấp thông tin ngân hàng và số tài khoản khi chọn phương thức thanh toán <code>Direct deposit</code>.
 
 - <b> PaymentController (Control): </b> Điều phối giữa <code>PaymentBoudaryForm</code> và <code>Employee</code>, thực hiện cập nhật phương thức thanh toán và xử lý logic chính.
-  + Thuộc tính:
-    - <code>currentEmployee:</code> Thông tin nhân viên hiện tại.
-  + Phương thức:
-    - <code>selectMethod():</code> Điều khiển luồng chọn phương thức thanh toán.
-    - <code>updatePayment():</code> Cập nhật phương thức thanh toán trong cơ sở dữ liệu.
+  + Các phương thức:
+    - <code>selectPaymentMethod(empID)</code>: Bắt đầu quá trình lựa chọn phương thức thanh toán cho nhân viên có mã empID.
+    - <code>updatePaymentMethod(empID, method, address, bankName, accountNumber)</code>:Cập nhật thông tin phương thức thanh toán cho nhân viên. Phương thức này xử lý các trường hợp khác nhau dựa trên method được chọn (có thể là <code>Pick up</code>, <code>Mail</code>, hoặc <code>Direct deposit</code>), với các tham số address, bankName, và accountNumber sẽ được sử dụng nếu cần thiết.
 
 👉 <b> Xác định quan hệ giữa các lớp phân tích: </b>
-- <code>PaymentBoundaryForm</code> tương tác với <code>PaymentController</code> để gửi và nhận dữ liệu, trong khi <code>PaymentController</code> sẽ tương tác với <code>Employee</code> và <code>PaymentMethod</code> để truy xuất và cập nhật thông tin cần thiết.
+- <code>PaymentBoundaryForm</code> tương tác với <code>PaymentController</code> để gửi và nhận dữ liệu, trong khi <code>PaymentController</code> sẽ tương tác với <code>Employee</code> để tìm, truy xuất và cập nhật thông tin cần thiết.
 
 👉 <b> Class diagram mô tả các lớp phân tích và giải thích: </b>
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/T99BJiCm48RtFiNiU4Yfr2qBL463n88A0HUOnbCQrI_Ds8i8SJ8M78aha2PEYfBYbUVtpEVnF_xv-bv9H8x96gNaK3jWBwHKPL04dh6nvEATJquZDm-UBNmeQ5S1P8Fn3T6Z2obs6i0xnIUAUwylhxAYQma6cvBPSoj-JiZttaNsnX2Ft2enjoTbncUEaA5g2az1OwIC-aiVYkVDhhFWq5BUXhw-PsSDjMOIoT4MtM5pAi2gQWs9csItnAUN3vUkCUAanNBqQkVFkD1VFJPhk_2j2VyylYs_W1So66llP5y7WPrdUEso1gOwDxkYk9qxh-QpEEQD0nZDl2wAISSti5mibg3KYfm-Vg5V0000__y30000" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/X9DDJiCm48NtFiMegnIbbRejcr9Q91Qja7e2Dnw5gFu9OniK8Kx6WYDn1LoHbCGE42bIF7upVbzc_Fd-iRAEa_DACcPFbGOo5Xah9BSMjggMfa64LmRXcG6g-dwpX8EZIfTjp5iapHL6uJeKU34aad2ZKBiTkaSJxt4X2AsDeaUkJ_kqFYyAuxNRUtL46km1I5DMEekDvOcdwHAUJIMksxGItKFVNZQDwjfOe0OORRaVyOvNykORAelW4kqwO6xGXGoRnSZvE6rNuwthLsjk7QI2KtDdIBMj0o1yycXJm9uBKTbQykRWYo8utOMNbpYksH8PwXHuNeo3jQVsVyIee4__6zQjqOwCb4WNA8iIYuXfCAF3mtmjkCC_v3aCEvh7Cvadu_X_RowtQBAOpwycC9jrNmaOIr7FqiKbQJ4PQp9ReHRdA_m5003__mC0" alt="Diagram">
 </p>
 
 - <b> Giải thích: </b>
@@ -126,57 +132,72 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
   + <i> PaymentController: </i> Đây là lớp điều khiển, đóng vai trò điều phối toàn bộ luồng sự kiện giữa <code>PaymentBoundaryForm</code> và <code>Employee</code>. Nó kiểm soát luồng xử lý từ việc yêu cầu phương thức thanh toán cho đến khi cập nhật thông tin vào cơ sở dữ liệu.
 
   + <i> Employee: </i> Lớp thực thể quản lý thông tin của nhân viên, bao gồm các thuộc tính và phương thức để truy xuất và cập nhật thông tin.
-
-  + <i> PaymentMethod: </i> Lớp lưu trữ thông tin về phương thức thanh toán. Tùy vào phương thức thanh toán mà nhân viên chọn, lớp này sẽ lưu trữ thông tin phù hợp.
   
 ## ⭐️ 4. Phân tích ca sử dụng Maintain Timecard 📇
 
 #### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:
 - <b> Entity classes: </b>
-  + <b> Timecard: </b> Lớp chứa thông tin về bảng chấm công của nhân viên, như số giờ làm việc, ngày làm việc, và trạng thái của timecard.
+  + <b> Timecard: </b> Lớp chứa thông tin về timecard của nhân viên, như số giờ làm việc, ngày làm việc, và trạng thái của timecard.
   + <b> Employee: </b> Lớp thông tin của nhân viên. Nhân viên có thể truy cập và chỉnh sửa timecard của mình.
   + <b> Project: </b> Lớp chứa thông tin về các dự án mà nhân viên có thể phân bổ số giờ làm việc.
+
 - <b> Boundary classes: </b>
-  + <b> TimecardBoundaryForm: </b> Giao diện tương tác với người dùng, cho phép nhân viên nhập giờ làm việc và nộp timecard.
+  + <b> TimecardBoundaryForm: </b> Giao diện tương tác với người dùng, cho phép nhân viên nhập giờ làm việc và gửi timecard.
+
 - <b> Control classes: </b>
-  + <b> TimecardController: </b> Điều phối các luồng sự kiện như tạo, cập nhật và nộp timecard. Lớp này cũng chịu trách nhiệm kiểm tra các ràng buộc về giờ làm việc.
+  + <b> TimecardController: </b> Điều phối các luồng sự kiện như tạo, cập nhật và gửi timecard. Lớp này cũng chịu trách nhiệm kiểm tra các ràng buộc về giờ làm việc.
 
 👉 <b> Sequence diagram cho ca sử dụng Maintain Timecard: </b>
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/b5HBRjim4Dtp5BDC5pPYksbIBeAWRHeKw2B8f_knD8XPKwGx7BhGsRB8aNA5K98jkOhTA5e8a8RlmpT3FZy-NGH1bbXOfSBIE60VI2dCn3DS5YlhIo8rzz7bo2NScO8ovFpBviTtpuNAl1FsjYr-RRujiI8dHZhOzlkQ_M_AHAcj0epEzt9hc6ZuwH_0EBMllelhP3LCDTpGdqX188lCIHPaw-7r-bqM3RCAAsneJOV1XuG_rk38xYszJGGQJZHSaG2kqLYSswIvG7uWSB6O4mUrMNX8y5ChsCFzVvl_XdoguPi9AujbQnlGvNtA0Uqwqt3f96ajVEG0VpqlgU4APAjj770vfAcVDTnIOcejnbMEGiaNMe5VQ4rNKv2UjpezEHwdyRh5rEWMHpOG_73hcgtUn02gtiWUZwTTeCJiguEG3vhsoa-S5sRFo0s9Q39jyTpC_suueQg4OBmR5iziFAa2kgzZxc9FDuR40E8RGX4Q67V5D-q5Niz6WKjAXZ4VUMVBfWVjIKDRLSftYVLIdRrg21or1apef3_KZRf8htGZlW000F__0m00" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/h9HBJiCm48RtFeN5AaXbmMFL1QeeHNH15y05t7ZQMZXscB4BEHiBZiGLS9BcqIY5L10f3p_cc_7_E_xw-9oG4-XyeXcZ5sKuMWB6HEmiybcIQfi1C31EkQnfBwqtKc36drK2iK1vi-kuivYms1g7LjU3qxAj0IjGDS9OXUHdrxqmFkRdOxu6D_M88RgQ4vsotkajJ9CsG2x67E7L0zM4kLdP299qVjkWMY4jK0Y_pCCTAjX2NK4dzc3ggoBMew7m9gyTCQ5TGuTtHQ6FX-ldEZgwI4Mf5bct7j043LnQ86wiAxCCI1B0CO9mi82tBlhVIZJ3d0z-0zvRZnJ56u5hMFXa2JZYcxplo1tWKnbMjL_AYFTo2t-sGYjPzWoJZKHhS-oBrIsmNdijqPEFOo1w2BTOGxIpKPb3LVnEd25Qh7YGDuOBJtwPg6QB7YTq6TprlD3KLMgLSnpaNyN2LrxhR9ZEfP4yd5lEKpqGdTJCasF5VmGXhT7zlrA19LBMy9LG6kHVV6XWiyQHINZa1_0t0000__y30000" alt="Diagram">
 </p>
 
 👉 <b> Nhiệm vụ và các thuộc tính của các lớp phân tích: </b>
-- <b> Employee (Entity): </b> Lớp này chứa thông tin về nhân viên và kết nối với timecard. Nhân viên có thể cập nhật giờ làm việc của mình. Các thuộc tính:
-  + <code>employeeID</code>: Mã nhân viên.
-  + <code>name</code>: Tên nhân viên.
-  + <code>currentTimecard</code>: Tham chiếu đến timecard hiện tại của nhân viên.
+- <b> Employee (Entity): </b> Lớp này chứa thông tin về nhân viên và kết nối với timecard. Nhân viên có thể cập nhật giờ làm việc của mình.
+  + Các thuộc tính:
+    - <code>empID</code>: ID của nhân viên.
+    - <code>name</code>: Tên nhân viên.
+    - <code>currentTimecard</code>: Tham chiếu đến timecard hiện tại của nhân viên.
+    - <code>maxHours</code>: Giới hạn giờ làm việc của nhân viên.
+    - <code>username</code>: username của tài khoản nhân viên.
+    - <code>password</code>: password của tài khoản nhân viên.
+  + Các phương thức:
+    - <code>getCurrentTimecard()</code>: Lấy thông tin timecard hiện tại.
+    - <code>canWorkMoreHours(hours)</code>: Kiểm tra xem nhân viên có thể làm thêm số giờ hours.
 
-- <b> Timecard (Entity): </b> Lưu trữ dữ liệu về giờ làm việc trong tuần, dự án mà giờ làm việc được tính vào và trạng thái của timecard. Các thuộc tính:
-  + <code>timecardID</code>: ID của timecard.
-  + <code>startDate</code>: Ngày bắt đầu kỳ chấm công.
-  + <code>endDate</code>: Ngày kết thúc kỳ chấm công.
-  + <code>hoursWorked[]</code>: Mảng chứa số giờ làm việc của mỗi ngày.
-  + <code>chargeNumbers[]</code>: Dự án tương ứng với số giờ làm việc.
-  + <code>status</code>: Trạng thái (draft, submitted).
-  + <code>submittedDate</code>: Ngày nộp timecard.
+- <b> Timecard (Entity): </b> Lưu trữ dữ liệu về giờ làm việc trong tuần, dự án mà giờ làm việc được tính vào và trạng thái của timecard.
+  + Các thuộc tính:
+    - <code>timecardID</code>: ID của timecard.
+    - <code>empID</code>: ID của nhân viên.
+    - <code>startDate</code>: Ngày bắt đầu kỳ chấm công.
+    - <code>endDate</code>: Ngày kết thúc kỳ chấm công.
+    - <code>hoursWorked[]</code>: Mảng chứa số giờ làm việc của mỗi ngày.
+    - <code>chargeNumbers[]</code>: Dự án tương ứng với số giờ làm việc.
+    - <code>status</code>: Trạng thái timecard (draft, submitted).
+    - <code>submittedDate</code>: Ngày gửi timecard.
 
-- <b> Project (Entity): </b> Lớp chứa thông tin về các dự án mà giờ làm việc có thể được tính vào. Các thuộc tính:
-  + <code>projectID</code>: ID của dự án.
-  + <code>projectName</code>: Tên dự án.
-  + <code>chargeNumber</code>: Số để tính chi phí cho dự án.
+- <b> Project (Entity): </b> Lớp chứa thông tin về các dự án mà giờ làm việc có thể được tính vào.
+  + Các thuộc tính:
+    - <code>projectID</code>: ID của dự án.
+    - <code>projectName</code>: Tên dự án.
+    - <code>chargeNumber</code>: Số để tính chi phí cho dự án.
  
-- <b> TimecardBoundaryForm (Boundary): </b> Giao diện tương tác với nhân viên để nhập và nộp bảng chấm công. Các phương thức:
-  + <code>displayTimecard()</code>: Hiển thị thông tin timecard.
-  + <code>getInput()</code>: Nhận đầu vào từ nhân viên (giờ làm việc, số dự án).
-  + <code>submitTimecard()</code>: Thực hiện nộp bảng chấm công.
+- <b> TimecardBoundaryForm (Boundary): </b> Giao diện tương tác với nhân viên để nhập và gửi timecard.
+  + Các phương thức:
+    - <code>requestTimecardInfo(empID)</code>: Yêu cầu nhân viên nhập giờ làm việc cho từng ngày.
+    - <code>displayTimecard(empID)</code>: Hiển thị thông tin timecard hiện tại.
+    - <code>displaySuccessMessage()</code>: Hiển thị thông báo thành công khi cập nhật timecard.
+    - <code>displayErrorMessage(error)</code>: Hiển thị thông báo lỗi khi có sai sót trong timecard.
+    - <code>displayReadonlyTimecard(empID)</code>:Hiển thị phiếu chấm công ở chế độ chỉ đọc nếu timecard đã được gửi.
 
-- <b> TimecardController (Control): </b> Điều khiển luồng sự kiện, xác minh tính hợp lệ của timecard, xử lý việc lưu và nộp. Các phương thức:
-  + <code>getTimecard()</code>: Lấy timecard hiện tại của nhân viên.
-  + <code>saveTimecard()</code>: Lưu thông tin timecard.
-  + <code>submitTimecard()</code>: Nộp timecard và khóa không cho chỉnh sửa thêm.
-
+- <b> TimecardController (Control): </b> Điều khiển luồng sự kiện, xác minh tính hợp lệ của timecard, xử lý việc lưu và gửi.
+  + Các phương thức:
+    - <code>retrieveTimecard(empID)</code>: Lấy timecard hiện tại cho nhân viên theo mã empID.
+    - <code>updateTimecard(empID, chargeNumber, hours)</code>: Cập nhật số giờ làm việc cho project và ngày tương ứng.
+    - <code>submitTimecard(empID)</code>: Gửi timecard và chuyển trạng thái của timecard thành “submitted” và kiểm tra tính hợp lệ về số giờ làm việc.
+    - <code>validateHours(empID, totalHours)</code>: Kiểm tra tổng số giờ làm việc, đảm bảo không vượt quá giới hạn của nhân viên.
+      
 👉 <b> Xác định quan hệ giữa các lớp phân tích: </b>
 - <code>TimecardBoundary</code> tương tác với <code>TimecardController</code> để gửi và nhận thông tin từ người dùng.
 - <code>TimecardController</code> kết nối với cả <code>Timecard</code> và <code>Project</code> để lấy và cập nhật thông tin thời gian làm việc cũng như các dự án tương ứng.
@@ -184,15 +205,15 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 👉 <b> Class diagram mô tả các lớp phân tích và giải thích: </b>
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/X9EzJiCm58LtFyNTW4gfwDe15IY8BXK34WDYSEEhnjH_ig-B8iIJCV18l099STmeRKMsStpowHxh-kVhUnQ8UufQCHOsqe2t0Hah5Gy1dgJ6adjnOwCHtDVtrcluOB3xX0nEyRhBd5yaVusqC2vIDa9SQKcztEUGVsiDUQiK-anlA0VamBTuQFvBJym2A1cBUJ9srUUSC6aqegSg6trujdw3ukKrUMN5_HgNKQ_GX-ms78gX4xk12FSeWEX48nvQO1vyovLitHED-atkj5EsHinDC1cvYU6w6xkCtgF9DxAdF7hxXYLbYFlJcP7qieVgjMqvPt0jX3HhyAWuIMj29Ls0TqaLwAX8EYLBIJLm8w2qsjaWsnWxkaX5SNLa0zYHfUWdOGgJyNXqAjQLdC9bcyetDogA0MAI4M2Rmy6FRDOiG_igVW400F__0m00" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/Z5HDJ-Cm4BtxLrWz5THMuXgj45e-18SY14XxG7iOag4D-2ECRTXgjRzi3_ma_W9EufWuYH0zLF7CyxnvRoPv__zsP2oGTL8mPfvAnKaRP2mNO0m_bPNGEqJ-bt7_MwAiBauoVcEfL9isf41Y6iaT4IfxMqhCWOeqAU7FkNPaCbugsuQSGHfNgJp_gnvSvnkqnsdv-LwRoK7zqlIqreGDmNmRQVROlqvGTwiJPCDvg6f2Q6FJ2LZVP_qVSAeOXXhUkXKixdvdV0tLZpgvg3iv30vjWJPuwUGzagb10nxhp23cxcLfBVR9egOhqe-OsqvIrHw7xOVmvNXSlMPYPcJOJ-rK0RGxqoG34oTyTcZY92xKW-wcKPIc4h2BGug-TuQdk5CYJMiq1ZOuRrlWMCTIs8tBSm_gW6do6g7GIdp9EP9rh9KbBGJIfoXFZoyOooIh42XTLVWHJ4CMVChH1G_xcEv3gDVEzqlA5n1bJTekzu3HQWlYF5tu-ExE3bQhWnbVBfkd_LaKpw938qZOAJOv_e1UhGwxnyZLq2D1RWr_BUsMJHWTA7hNOnyPbw3yQCstY7jIUkKpRlnRQRWt2xmnZ1tvO_rv-m000F__0m00" alt="Diagram">
 </p>
 
 - <b> Giải thích: </b>
-  + <i> TimecardBoundaryForm: </i> Lớp biên nhận đầu vào từ nhân viên, cho phép họ nhập số giờ làm việc và nộp bảng chấm công. Lớp này cũng xử lý việc hiển thị các thông báo lỗi nếu có.
+  + <i> TimecardBoundaryForm: </i> Lớp biên nhận đầu vào từ nhân viên, cho phép họ nhập số giờ làm việc và gửi timecard. Lớp này cũng xử lý việc hiển thị các thông báo lỗi nếu có.
 
-  + <i> TimecardController: </i> Lớp điều khiển quản lý luồng xử lý của bảng chấm công, bao gồm việc lấy dữ liệu từ timecard hiện tại, lưu thay đổi và kiểm tra tính hợp lệ của dữ liệu trước khi nộp.
+  + <i> TimecardController: </i> Lớp điều khiển quản lý luồng xử lý của timecard, bao gồm việc lấy dữ liệu từ timecard hiện tại, lưu thay đổi và kiểm tra tính hợp lệ của dữ liệu trước khi gửi.
 
-  + <i> Timecard: </i> Lớp thực thể chứa thông tin về bảng chấm công, bao gồm số giờ làm việc, các dự án và trạng thái của bảng chấm công.
+  + <i> Timecard: </i> Lớp thực thể chứa thông tin về timecard, bao gồm số giờ làm việc, các dự án và trạng thái của timecard.
 
   + <i> Project: </i> Lớp thực thể lưu trữ thông tin về dự án và mã số mà thời gian làm việc của nhân viên sẽ được tính vào.
 
@@ -200,21 +221,23 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 
 👉 <b> Hợp nhất các lớp phân tích: </b>
 - <b> Lớp chung: </b>
-  + <code>Employee:</code> Lớp nhân viên cần thiết trong cả hai ca sử dụng để lưu trữ thông tin về phương thức thanh toán cũng như bảng chấm công.
-- <b> Điểm hợp nhất: </b>
-  + Cả hai ca sử dụng đều cần có cơ chế xác thực và lưu trữ dữ liệu (<code>payment method</code> và <code>timecard</code>).
-  + Có thể kết hợp giao diện người dùng trong một module EmployeeBoundaryForm, cung cấp cả chức năng chọn phương thức thanh toán và cập nhật bảng chấm công.
+  + <code>Employee:</code> Lớp nhân viên cần thiết trong cả hai ca sử dụng để lưu trữ thông tin về phương thức thanh toán cũng như timecard.
+- <b> Điểm hợp nhất: </b>ư
+  + Sau hợp nhất, lớp Employee không chỉ lưu trữ thông tin về phương thức thanh toán mà còn quản lý thông tin liên quan đến timecard.
+  + Hợp nhất thông tin giúp tránh việc trùng lặp thông tin và giảm thiểu các quy trình phức tạp. Nhân viên có thể dễ dàng truy cập thông tin về thời gian làm việc và phương thức thanh toán mà không cần phải tương tác với nhiều lớp khác nhau.
+  + Có thể kết hợp giao diện người dùng trong một module như EmployeeBoundaryForm, cung cấp cả chức năng chọn phương thức thanh toán và cập nhật timecard.
 
 
-
-- <b> Employee: </b> Cho phép nhân viên quản lý thông tin cá nhân như cập nhật chấm công thời gian làm việc và phương thức thanh toán.
-- <b> PaymentMethod: </b> Lớp chứa thông tin phương thức thanh toán (như <code>Direct deposit</code>, <code>Mail</code>, <code>pick up</code>) và chứa thông tin chi tiết về lựa chọn của nhân viên.
-- <b> Timecard: </b> Đảm bảo các lớp xử lý chỉ cho phép nhân viên tương tác với dữ liệu cá nhân của họ, chứa thông tin chi tiết về thời gian làm việc, ngày giờ mà nhân viên đã làm trong kỳ tính lương.
-- <b> PaymentController: </b> Chịu trách nhiệm quản lý các yêu cầu liên quan đến phương thức thanh toán của nhân viên.
-- <b> TimecardManager: </b> Chịu trách nhiệm xử lý các yêu cầu liên quan đến việc chấm công của nhân viên.
+- <b> Employee: </b> Lớp này lưu trữ thông tin của nhân viên, bao gồm thông tin đăng nhập, thông tin thanh toán và timecard hiện tại.
+- <b> Timecard: </b> Lớp này lưu trữ thông tin chi tiết về timecard của nhân viên, bao gồm ID, thời gian làm việc và trạng thái.
+- <b> PaymentController: </b> Lớp này quản lý các thao tác liên quan đến việc cập nhật thông tin thanh toán của nhân viên.
+- <b> TimecardController: </b> Lớp này điều khiển các thao tác liên quan đến việc cập nhật và gửi timecard.
+- <b> PaymentBoundaryForm: </b> Lớp này chỉ phục vụ cho việc tương tác với các chức năng thanh toán.
+- <b> TimecardBoundaryForm: </b> Chỉ tập trung vào việc nhập và quản lý timecard.
+- <b> Project: </b> Chứa thông tin về các dự án mà nhân viên làm việc.
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/X9IzRjH04CVxVOhf894SaJO5YY27YCH5aHA90b7CsSFPdBrhzYEIXLAdfgQCKY5U82vu5Zy1hy3QtjtprucJNCnuxhV_-S-i_zP_pfL6gKsHCxNBE4YXYB4NyA6fVvQWc_eNh37ZsZvmcnKKeqnOdADI8NmZ34zGLk-4BE0xW-wNPAhCiV8rBuzSValwafT6XuGocoBJWxfxDk6_5LnBaUSa0zrIPcI5TpHF_fVkc15ebxYyS8dEc0lKv6BYoI1AXP7gev0xIZvzThauHRcbArDiIAgGjHnjb0ywGPhsA01J9ZPutmA3y3lCipPxeADX9zTIVALOXqRAFWvzkFWA2rhGsN96uxwXlALTOrKGr_wCFbeOjVMbA7DH4NLptGzeJJeLUzrk8LPI2ZbItvDdGxOgZPJspShXVV-Tl0cyTz2X5kXzUI0NNNXRbGUW0qlywP0szMC9F6sUdxmfuTtC2MyzttjU3fMu72Q99ELNOuDyDnWInh5rMxifZIm95p6OxQNOhSA9AwimdY_2zxPkwXyPV3F8sxuU-i77pVCZf9X1ZA2Q-ZSaJVt4jspndaVHwuKBoXRkxB0Ipk3qvEJuK9dVv3DurLO5Vu-ZQ88u3GWGzkNaZsnfNRi3fil6vklNreMT6qaOBvFJmSxjTw7zVFu3003__mC0" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/d5RDZjCm4BxdAQoUkYYjr6k4Lijk5-qUka8i4WV4mOs7DDInmzZkKY6UZ0EFn2lWf8bnRE-FgDGg7d_sp3VppQH_Vls-K9gYDWtFChMl1K6f8CjAJfKYrqtBvH60_CY8_Im8DEtjkY3t6cjH3JQZ00Lj832tze87YImo7niGUWDw9yCzoXY2Ke5rIyN-BhwVbgKqGj-PPWiOx9K6qJhvK3TGqYY4Xdw_aGQjdrhetaO8brKjvY6LF69nLf23hDbmgWBzpkSpFvku8aI5W6R2UtgR1MzepT-SiZ0FiX5XBsrUrg3j2JKFSvIdqnD5VpLDL1H_ISL7YVkDHEXJDj-vn5deLaeEL6G_HxqCN2-jPqRn-5PYCqY748Hl1bISBoyWLgkMq-EzAKjBV6E_j88qvXfHueY0Rf7cE7Zryve4-CaS0I6jAoaqIiu17Ia57Cg0qwH7fivCowY69-0vcGea3tiYZzhXcL8x4cEDNI_hmH0rTAh9-o6nji4NfFiTaO95jbuXdMY0VVfSa0rjNtUxUQUPyx4_TnGhE0MiEbJeIvjm2YYpRMgjmNVuhq0elzewE6hjQHsn6Eo9QU97vBQYt3qbx15pAxx8j6PTbxbIZ2LuNkAdY4YlzFzkclT0cHJy1O54p1FQHx0nmG7SRQ7mnus9-DFeF5c0d0pZPYgYO1BsmdWq20zveBpkGZXDii2_bfhocqUcctiFpbRBvQiPMIp6fsWqPF6mwA0hTsWrIut9mCVAz-7owCeLGOO6o9927T3BvVduw7prN05fgHLvgFKkIzHxSE4TTt4KzbqghDpKYnnxLBph2pj41LF4LeRQAcJPXLrsVqV-0W00__y30000" alt="Diagram">
 </p>
 
 #### ⭐️ <i> From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111 </i> 💙
