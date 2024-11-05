@@ -80,7 +80,7 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 - **Control classes:** 
   + **PaymentController:**  Lớp này điều phối luồng sự kiện giữa người dùng và hệ thống, xử lý logic nghiệp vụ để cập nhật phương thức thanh toán của nhân viên.
 
-👉 **Sequence diagram cho ca sử dụng Payment:** 
+👉 **Sequence diagram cho ca sử dụng Select Payment:** 
 
 <p align="center">
   <img src="https://www.planttext.com/api/plantuml/png/b9H1Rjim44NtFCL0gnX834HAsqIB8asT00LgDq1EG9CJXx14gYHLG6VheaVg5JgKB9bohCGrODaavl-P_oJgx-y_jyvpw-koOCnjbGPh73B6XJSMxikgC0qYS0TOLcnjQYsvRU2HDoLglqJ_OkJTRlV1s39KzbLC6EsjASRLNxlD0cse5SEAKONopRXdkyKOzOQBpuCnv72PmtUpsQ04fRq1_uBW6kUnF5ARvl2ZGWt94nOeV3yETFCa-rGasyz3mYm7rqf60SwemxV5Z4Mb9DnDdyDL3izAopv6NyruuVVP7a9B1lGPkqHJVvXJHei_QtG7_MUjy7NEZq5HMVDBIJoccCpvAGWTQZbMLV6gisWl8KdogCJsegwITkTra077TV2kAydzmKo3movEuH2I9LV5b6MKz7gUHdI2w8kK5ftR9JtE9wZIWT1nrIIZ8CuwIh6ITx-pzp6aywi946teSnXPTJWMoeO7Te6LSSgV12QBmDnnlLsW9_ltm6GHc5YrflyhNY9D9mG9_AekrsXFufNrlFxBS99VDidlWD8vlDc41c9ldxoR7AHoLS6Rfre8kYLB-l8D4iFsjWodU6NyQISv7HplhJMszqi69qrEpq51fo4CU4kNy4h-1m00__y30000" alt="Diagram">
