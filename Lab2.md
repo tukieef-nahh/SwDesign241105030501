@@ -1,4 +1,3 @@
-
 # 🐳 Bài thực hành Lab2 <img src="https://media.giphy.com/media/fYSnHlufseco8Fh93Z/giphy.gif" width="30">
 
 </br>📑 Tài liệu yêu cầu
@@ -143,20 +142,21 @@
 package Lab2;
 
 public class Employee {
-	private String empID;
+    private String empID;
     private String name;
     private Timecard currentTimecard;
     private int maxHours;
     private String username;
     private String password;
 
-    public Employee(String empID, String name, int maxHours, String username, String password) {
+    public Employee(String empID, String name, int maxHours, String username, String password) 
+    {
         this.empID = empID;
         this.name = name;
         this.maxHours = maxHours;
         this.username = username;
         this.password = password;
-        this.currentTimecard = new Timecard(empID); // Khởi tạo timecard hiện tại cho nhân viên
+        this.currentTimecard = new Timecard(empID);
     }
 
     public Timecard getCurrentTimecard() {
@@ -168,6 +168,8 @@ public class Employee {
     }
 }
 ```
+- `getCurrentTimecard()`: Lấy phiếu chấm công hiện tại của nhân viên.
+- `canWorkMoreHours(int hours)`: Kiểm tra xem nhân viên có thể làm thêm hours giờ mà không vượt quá maxHours.
 
 #### 👉 Class Entity của Timecard
 ```
@@ -179,7 +181,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Timecard {
-	private String timecardID;
+    private String timecardID;
     private String empID;
     private Date startDate;
     private Date endDate;
@@ -215,42 +217,25 @@ public class Timecard {
     }
 }
 ```
+- `getTotalHours()`: Tính tổng số giờ đã làm việc của nhân viên.
+- `setHoursWorked(Date date, int hours, String chargeNumber)`: Cập nhật số giờ làm việc cho một ngày cụ thể với charge number.
+- `submitTimecard()`: Đánh dấu timecard là "submitted" và lưu lại ngày nộp.
+- `isSubmitted()`: Kiểm tra xem timecard đã được gửi hay chưa.
 
 #### 👉 Class Entity của Project
 ```
 package Lab2;
 
 public class Project {
-	private String projectID;
+    private String projectID;
     private String projectName;
     private String chargeNumber;
 
     public Project(String projectID, String projectName, String chargeNumber) {
-        this.setProjectID(projectID);
-        this.setProjectName(projectName);
+    	this.projectID = projectID;
+        this.projectName = projectName;
         this.chargeNumber = chargeNumber;
     }
-
-    public String getChargeNumber() {
-        return chargeNumber;
-    }
-
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public String getProjectID() {
-		return projectID;
-	}
-
-	public void setProjectID(String projectID) {
-		this.projectID = projectID;
-	}
-
 }
 ```
 
@@ -259,7 +244,7 @@ public class Project {
 package Lab2;
 
 public class TimecardBoundaryForm {
-	public void requestTimecardInfo(Employee employee) {
+    public void requestTimecardInfo(Employee employee) {
         System.out.println("Enter hours for each day.");
     }
 
@@ -278,9 +263,13 @@ public class TimecardBoundaryForm {
     public void displayReadonlyTimecard(Timecard timecard) {
         System.out.println("Timecard is in read-only mode. No changes allowed.");
     }
-
 }
 ```
+- `requestTimecardInfo(Employee employee)`: Yêu cầu nhập thông tin timecard (giờ làm việc) cho từng ngày.
+- `displayTimecard(Timecard timecard)`: Hiển thị thông tin timecard.
+- `displaySuccessMessage()`: Hiển thị thông báo thành công sau khi cập nhật timecard.
+- `displayErrorMessage(String error)`: Hiển thị thông báo lỗi.
+- `displayReadonlyTimecard(Timecard timecard)`: Hiển thị timecard ở chế độ chỉ đọc nếu đã được gửi.
 
 #### 👉 Class Control của TimecardController
 ```
@@ -291,13 +280,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TimecardController {
-	private TimecardBoundaryForm boundaryForm;
+    private TimecardBoundaryForm boundaryForm;
     private Map<String, Project> projectDatabase;
 
     public TimecardController(TimecardBoundaryForm boundaryForm) {
         this.boundaryForm = boundaryForm;
         this.projectDatabase = new HashMap<>();
-        // Assume projects are loaded into projectDatabase from some external source
     }
 
     public void retrieveTimecard(Employee employee) {
@@ -342,6 +330,41 @@ public class TimecardController {
     }
 }
 ```
+- `retrieveTimecard(Employee employee)`: Lấy thông tin timecard của nhân viên và hiển thị. Nếu timecard đã gửi, hiển thị chế độ chỉ đọc; nếu chưa gửi, hiển thị thông tin để chỉnh sửa.
+- `updateTimecard(Employee employee, Date date, String chargeNumber, int hours)`: Cập nhật giờ làm việc của nhân viên cho một ngày cụ thể.
+  - Nếu timecard đã gửi, hiển thị lỗi "Cannot update submitted timecard".
+  - Nếu số giờ lớn hơn 24 hoặc vượt quá giới hạn maxHours của nhân viên, hiển thị lỗi.
+  - Nếu hợp lệ, cập nhật giờ và charge number cho ngày đó, sau đó hiển thị thông báo thành công.
+- `submitTimecard(Employee employee)`: Gửi timecard của nhân viên.
+  - Nếu timecard đã gửi, hiển thị lỗi "Timecard already submitted".
+  - Nếu tổng số giờ vượt quá giới hạn maxHours, hiển thị lỗi.
+  - Nếu hợp lệ, đánh dấu timecard là "submitted" và hiển thị thông báo thành công.
 
+#### 👉 Phân tích code Java mô phỏng ca sử dụng Maintain Timecard
+Lớp `Employee` lưu trữ thông tin nhân viên và timecard.
+Lớp `Timecard` lưu trữ thông tin về giờ làm việc và trạng thái của timecard.
+Lớp `Project` đại diện cho dự án mà nhân viên có thể làm việc.
+`TimecardBoundaryForm` là giao diện, hiển thị thông tin timecard cho người dùng.
+`TimecardController` điều khiển logic nghiệp vụ: cập nhật giờ làm việc, kiểm tra giới hạn giờ, và gửi timecard, đảm bảo các quy trình diễn ra đúng theo yêu cầu hệ thống.
+
+⭐️ **Luồng hoạt động cho Maintain Timecard**
+**1. Lấy và Hiển thị Thông tin Timecard (`retrieveTimecard`)**
+- Người dùng yêu cầu xem timecard của mình.
+- `TimecardController` gọi phương thức `retrieveTimecard` để lấy timecard hiện tại của nhân viên `employee.getCurrentTimecard()`.
+- Nếu timecard đã được gửi `timecard.isSubmitted()` trả về `true`, hệ thống sẽ hiển thị thông báo rằng timecard này ở chế độ chỉ đọc (không thể chỉnh sửa) thông qua phương thức `displayReadonlyTimecard` của lớp `TimecardBoundaryForm`.
+- Nếu timecard chưa gửi, hệ thống sẽ hiển thị thông tin timecard cho phép chỉnh sửa bằng cách gọi `displayTimecard` trong `TimecardBoundaryForm`.
+
+**2. Cập nhật Thông tin Timecard (`updateTimecard`)**
+- Người dùng yêu cầu cập nhật giờ làm việc cho một ngày cụ thể, kèm mã dự án và số giờ làm việc.
+- `TimecardController` gọi `updateTimecard` để kiểm tra điều kiện trước khi cập nhật.
+  - Nếu timecard đã được gửi `isSubmitted()` trả về `true`, `TimecardController` hiển thị thông báo lỗi qua `displayErrorMessage` trong `TimecardBoundaryForm`.
+  - Nếu số giờ làm việc lớn hơn 24 hoặc tổng số giờ đã làm cộng thêm số giờ mới vượt quá giới hạn của nhân viên `canWorkMoreHours` trả về `false`, `TimecardController` hiển thị thông báo lỗi qua `displayErrorMessage`.
+- Nếu tất cả điều kiện hợp lệ, `TimecardController` gọi phương thức `setHoursWorked` trên `Timecard` để cập nhật số giờ làm và mã dự án. Sau khi cập nhật thành công, hệ thống hiển thị thông báo thành công `displaySuccessMessage` qua `TimecardBoundaryForm`.
+
+**3. Nộp Timecard (`submitTimecard`)**
+- Khi người dùng yêu cầu nộp timecard, `TimecardController` gọi phương thức `submitTimecard`.
+- Nếu timecard đã được gửi `isSubmitted()` trả về `true`, `TimecardController` hiển thị thông báo lỗi qua `displayErrorMessage`.
+- Nếu tổng số giờ đã làm vượt quá giới hạn cho phép của nhân viên `canWorkMoreHours` trả về `false`, `TimecardController` hiển thị thông báo lỗi qua `displayErrorMessage`.
+- Nếu tất cả điều kiện hợp lệ, `TimecardController` gọi `submitTimecard` trong `Timecard` để cập nhật trạng thái `timecard` thành "submitted" và gán ngày nộp `submittedDate` là ngày hiện tại. Cuối cùng, `TimecardBoundaryForm` hiển thị thông báo thành công `displaySuccessMessage`.
 
 #### ⭐️ <i> From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111 </i> 💙
