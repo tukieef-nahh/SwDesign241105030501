@@ -70,7 +70,7 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 
 ## ⭐️ 3. Phân tích ca sử dụng Select Payment 📑
 
-#### 👉 Các lớp phân tích cho ca sử dụng Select Payment:** 
+#### 👉 Các lớp phân tích cho ca sử dụng Select Payment: 
 - **Entity classes:** 
   + **Employee:**  Người dùng chọn phương thức thanh toán, bao gồm các thuộc tính như: `employeeID`, `name`, `PaymentMethod`, `address`, `bankName`, `accountNumber`.
 
