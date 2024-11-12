@@ -328,6 +328,11 @@ public class TimecardController {
         timecard.submitTimecard();
         boundaryForm.displaySuccessMessage();
     }
+
+    private boolean validateHours(String empID, int totalHours) {
+        Employee employee = new Employee(empID, "", 40, "", "");
+        return employee.canWorkMoreHours(totalHours);
+    }
 }
 ```
 - `retrieveTimecard(Employee employee)`: Lấy thông tin timecard của nhân viên và hiển thị. Nếu timecard đã gửi, hiển thị chế độ chỉ đọc; nếu chưa gửi, hiển thị thông tin để chỉnh sửa.
@@ -339,6 +344,7 @@ public class TimecardController {
   - Nếu timecard đã gửi, hiển thị lỗi "Timecard already submitted".
   - Nếu tổng số giờ vượt quá giới hạn maxHours, hiển thị lỗi.
   - Nếu hợp lệ, đánh dấu timecard là "submitted" và hiển thị thông báo thành công.
+- `validateHours`: giúp xác minh xem nhân viên có thể làm thêm số giờ chỉ định mà không vượt quá giới hạn số giờ tối đa.
 
 #### 👉 Phân tích code Java mô phỏng ca sử dụng Maintain Timecard
 Lớp `Employee` lưu trữ thông tin nhân viên và timecard.
