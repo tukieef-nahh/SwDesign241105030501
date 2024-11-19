@@ -115,7 +115,7 @@
 👉 **Sequence diagram cho ca sử dụng Run Payroll:** 
 
 <p align="center">
-  <img src="" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/Z9JFQiCm3CRlVWeVMzWA-myvR6LbXvqQsEx5TTJ5rB6Bup3oR3liaVOAasAxITiKUWgMlv_qIHRv-_cTrruutrIQiNgh37Us1iQ4zDRnZxRsKAqMsiejMzl65CArCTe5tuq7jn4IcBJ6EwjvBbhyw4KuQd0CZ5U-vM_LJjiM89q_LGLIk2ATyyR9KjImT4KFOJPPmh1uxXJLx0i7fp7Swrw5sGQZKK61LOomOMFy-dcqfOpVPBmRpcJAnWG4dhIBr0mvrnY-2tT8inCPiMaY7KAGgeafHFk2p0N8RSQ_m1F3HOMDaz6a87KQSLHJ2TBx6ERAREmHSl0AYOjrykKOSMHfTfTnARHijF20FPph9Brim0XoW0J_LhxikxbW2FVx8LIuDBm2NzhYRDMZxGaf7ZA-euj9CeNqaN00HuQc6QYBR3u6cslSmZJ5KQhVsy0zuGw2AGBedJ0rhhEoPk_rgiyvPJsTSgqEaf7fBjqm4-xd76Fq2_W7003__mC0" alt="Diagram">
 </p>
 
 👉 **Nhiệm vụ và các thuộc tính của các lớp phân tích:** 
