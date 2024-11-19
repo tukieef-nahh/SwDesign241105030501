@@ -1,4 +1,4 @@
-# 🐳 Bài thực hành Lab4 <img src="https://media.giphy.com/media/fYSnHlufseco8Fh93Z/giphy.gif" width="30">
+# 🐳 Bài thực hành Lab4 - Usecase Design <img src="https://media.giphy.com/media/fYSnHlufseco8Fh93Z/giphy.gif" width="30">
 #### 📖 Mục đích 📝
 Thiết kế các ca sử dụng cho hệ thống "Payroll System" dựa vào kết quả phân tích ca sử dụng và các phần tử thiết kế (cho trong file đính kèm).
 </br>📑 File đính kèm
