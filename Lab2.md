@@ -9,17 +9,19 @@
 
 #### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:** 
 - **Entity classes:** 
-  + **Employee:**
-  + **Timcard:**
+  + **Employee:** Lưu trữ thông tin nhân viên.
+  + **Timcard:** Chứa thông tin chấm công, giờ làm việc.
 
 - **Boundary classes:** 
-  + **ProjectManagementDatabase:**
-  + **TimecardForm:**
+  + **ProjectManagementDatabase:** Quản lý mã dự án (charge codes).
+  + **TimecardForm:** Giao diện hiển thị để nhân viên tương tác và nhập thông tin giờ làm việc.
 
 - **Control classes:** 
-  + **TimeCardController:**  
+  + **TimeCardController:** Điều phối luồng xử lý giữa người dùng, giao diện, và các thực thể.
 
 👉 **Sequence diagram cho ca sử dụng Maintain Timecard:** 
+
+Sequence diagram này mô tả luồng sự kiện khi nhân viên tạo hoặc cập nhật một timecard. Nó bao gồm tương tác giữa nhân viên, giao diện chấm công (TimecardForm), và hệ thống cơ sở dữ liệu.
 
 <p align="center">
   <img src="https://www.planttext.com/api/plantuml/png/d9HBKeD048RtSuhUgGjJPN2LXPKg7pij5rvW0fq4PMQedaRbR2uyabUmWK0c8P0e1Ojv_5__tJt3pzVttBCcBaoc_5jgWPn7fNJCZk3Uv9ah4TN25JRHL0Ayf0PZJSc38wDYPvbSratUDkCCIQ7bbCjkfHstHD0UqEHRy3EvLupvKLkzGYExxpJhXHOlZPNUkb8Tw_9cnzOChkhNwDIoVC2RnVCBfSADeN1hNRGJKQ-G8Iw895G8wE-lA99ABHiHwepX2J_0MOIOK3Cca2uXPKWSUdl6W9-fPmNo2AwY3jQaYJKTZ8KswOoE93c9Pa381TaUP23FlJ8BudeOCLZhLYq99AdFCrt-eqNH9lkrffLKr2Ne1zipMiYeQzekQb1qaDYGfjjg1B0-QYIji2aXuxI6H653Gld8RH7JOabuQrUGXwNSjetK5cQ1v4zjohIgP94dShQFNvbsjfOT5evubY9v_Ov_FZTri_ULnmn6ZS5UmBdSi-g_-Gi00F__0m00" alt="Diagram">
@@ -73,7 +75,9 @@
     - `save timecard()`
 
 👉 **Xác định quan hệ giữa các lớp phân tích:** 
-- 
+- `Employee` có liên kết với `Timecard` để quản lý thông tin giờ làm việc.
+- `TimecardForm` tương tác với `TimecardController` để hiển thị và lưu `timecard`.
+- `TimecardController` kết nối với `ProjectManagementDatabase` để lấy `charge codes`.
 
 👉 **Class diagram mô tả các lớp phân tích và giải thích:** 
 
@@ -96,21 +100,19 @@
 
 #### 👉 Các lớp phân tích cho ca sử dụng Run Payroll:
 - **Entity classes:** 
-  + **Employee:**
-  + **Timcard::**
-  + **Paycheck:**
-  + **HourlyEmployee:**
-  + **SalariedEmployee:**
-  + **CommissioneEmployee:**
-  + **PurchaseOrder:**
+  + **Employee:** Đại diện nhân viên và thông tin liên quan đến lương.
+  + **Timcard::** Dữ liệu giờ làm việc để tính lương.
+  + **Paycheck:** Thông tin phiếu lương.
+  + **HourlyEmployee:**, **SalariedEmployee:**, **CommissioneEmployee:** Các loại nhân viên với cách tính lương khác nhau.
+  + **PurchaseOrder:** Lưu thông tin đơn hàng cho nhân viên hưởng hoa hồng.
 
-- **Boundary classes:** 
-  + **SystemClockInterface:**
-  + **BankSystem:**
-  + **PrinterInterface:** 
+- **Boundary classes:**
+  + **SystemClockInterface:** Xác định thời điểm chạy bảng lương.
+  + **BankSystem:** Xử lý giao dịch ngân hàng.
+  + **PrinterInterface:** In phiếu lương.
 
 - **Control classes:** 
-  + **PayRollController:**  
+  + **PayRollController:** Điều phối luồng xử lý tính lương.
 
 👉 **Sequence diagram cho ca sử dụng Run Payroll:** 
 
@@ -192,7 +194,9 @@
     - `run payroll()`
       
 👉 **Xác định quan hệ giữa các lớp phân tích:** 
-- 
+- `PayrollController` điều phối luồng xử lý giữa các lớp nhân viên (`HourlyEmployee`, `SalariedEmployee`, `CommissionedEmployee`) và `Paycheck`.
+- `SystemClockInterface` kích hoạt việc tính toán bảng lương.
+- `BankSystem` và `PrinterInterface` xử lý thanh toán và in ấn.
 
 👉 **Class diagram mô tả các lớp phân tích và giải thích:** 
 
