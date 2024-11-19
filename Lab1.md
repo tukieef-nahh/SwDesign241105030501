@@ -126,11 +126,11 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 </p>
 
 - **Giải thích:** 
-  + <i> PaymentBoundaryForm: </i> Lớp boundary chịu trách nhiệm giao tiếp với nhân viên, thu thập dữ liệu đầu vào và hiển thị các thông báo lỗi hoặc yêu cầu. Lớp này không thực hiện bất kỳ logic nào liên quan đến nghiệp vụ.
+  + _PaymentBoundaryForm:_ Lớp boundary chịu trách nhiệm giao tiếp với nhân viên, thu thập dữ liệu đầu vào và hiển thị các thông báo lỗi hoặc yêu cầu. Lớp này không thực hiện bất kỳ logic nào liên quan đến nghiệp vụ.
 
-  + <i> PaymentController: </i> Đây là lớp điều khiển, đóng vai trò điều phối toàn bộ luồng sự kiện giữa `PaymentBoundaryForm` và `Employee`. Nó kiểm soát luồng xử lý từ việc yêu cầu phương thức thanh toán cho đến khi cập nhật thông tin vào cơ sở dữ liệu.
+  + _PaymentController:_ Đây là lớp điều khiển, đóng vai trò điều phối toàn bộ luồng sự kiện giữa `PaymentBoundaryForm` và `Employee`. Nó kiểm soát luồng xử lý từ việc yêu cầu phương thức thanh toán cho đến khi cập nhật thông tin vào cơ sở dữ liệu.
 
-  + <i> Employee: </i> Lớp thực thể quản lý thông tin của nhân viên, bao gồm các thuộc tính và phương thức để truy xuất và cập nhật thông tin.
+  + _Employee:_ Lớp thực thể quản lý thông tin của nhân viên, bao gồm các thuộc tính và phương thức để truy xuất và cập nhật thông tin.
   
 ## ⭐️ 4. Phân tích ca sử dụng Maintain Timecard 📇
 
@@ -208,13 +208,13 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
 </p>
 
 - **Giải thích:** 
-  + <i> TimecardBoundaryForm: </i> Lớp biên nhận đầu vào từ nhân viên, cho phép họ nhập số giờ làm việc và gửi timecard. Lớp này cũng xử lý việc hiển thị các thông báo lỗi nếu có.
+  + _TimecardBoundaryForm:_ Lớp biên nhận đầu vào từ nhân viên, cho phép họ nhập số giờ làm việc và gửi timecard. Lớp này cũng xử lý việc hiển thị các thông báo lỗi nếu có.
 
-  + <i> TimecardController: </i> Lớp điều khiển quản lý luồng xử lý của timecard, bao gồm việc lấy dữ liệu từ timecard hiện tại, lưu thay đổi và kiểm tra tính hợp lệ của dữ liệu trước khi gửi.
+  + _TimecardController:_ Lớp điều khiển quản lý luồng xử lý của timecard, bao gồm việc lấy dữ liệu từ timecard hiện tại, lưu thay đổi và kiểm tra tính hợp lệ của dữ liệu trước khi gửi.
 
-  + <i> Timecard: </i> Lớp thực thể chứa thông tin về timecard, bao gồm số giờ làm việc, các dự án và trạng thái của timecard.
+  + _Timecard:_ Lớp thực thể chứa thông tin về timecard, bao gồm số giờ làm việc, các dự án và trạng thái của timecard.
 
-  + <i> Project: </i> Lớp thực thể lưu trữ thông tin về dự án và mã số mà thời gian làm việc của nhân viên sẽ được tính vào.
+  + _Project:_ Lớp thực thể lưu trữ thông tin về dự án và mã số mà thời gian làm việc của nhân viên sẽ được tính vào.
 
 ## ⭐️ 5. Hợp nhất kết quả phân tích 📁
 
@@ -239,4 +239,4 @@ Bài toán yêu cầu một hệ thống payroll (chấm công và thanh toán l
   <img src="https://www.planttext.com/api/plantuml/png/d5RDZjCm4BxdAQoUkYYjr6k4Lijk5-qUka8i4WV4mOs7DDInmzZkKY6UZ0EFn2lWf8bnRE-FgDGg7d_sp3VppQH_Vls-K9gYDWtFChMl1K6f8CjAJfKYrqtBvH60_CY8_Im8DEtjkY3t6cjH3JQZ00Lj832tze87YImo7niGUWDw9yCzoXY2Ke5rIyN-BhwVbgKqGj-PPWiOx9K6qJhvK3TGqYY4Xdw_aGQjdrhetaO8brKjvY6LF69nLf23hDbmgWBzpkSpFvku8aI5W6R2UtgR1MzepT-SiZ0FiX5XBsrUrg3j2JKFSvIdqnD5VpLDL1H_ISL7YVkDHEXJDj-vn5deLaeEL6G_HxqCN2-jPqRn-5PYCqY748Hl1bISBoyWLgkMq-EzAKjBV6E_j88qvXfHueY0Rf7cE7Zryve4-CaS0I6jAoaqIiu17Ia57Cg0qwH7fivCowY69-0vcGea3tiYZzhXcL8x4cEDNI_hmH0rTAh9-o6nji4NfFiTaO95jbuXdMY0VVfSa0rjNtUxUQUPyx4_TnGhE0MiEbJeIvjm2YYpRMgjmNVuhq0elzewE6hjQHsn6Eo9QU97vBQYt3qbx15pAxx8j6PTbxbIZ2LuNkAdY4YlzFzkclT0cHJy1O54p1FQHx0nmG7SRQ7mnus9-DFeF5c0d0pZPYgYO1BsmdWq20zveBpkGZXDii2_bfhocqUcctiFpbRBvQiPMIp6fsWqPF6mwA0hTsWrIut9mCVAz-7owCeLGOO6o9927T3BvVduw7prN05fgHLvgFKkIzHxSE4TTt4KzbqghDpKYnnxLBph2pj41LF4LeRQAcJPXLrsVqV-0W00__y30000" alt="Diagram">
 </p>
 
-#### ⭐️ <i> From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111 </i> 💙
+#### ⭐️ _From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111_ 💙
