@@ -4,7 +4,7 @@
 
 #### 👉 Biểu đồ ngữ cảnh của các hệ thống con:
 <p align="center">
-  <img src="" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/f58zJyCm4DtzAqwTMecqi4QLLQLJDYG6PfDS4okE7PqT809-6GC_YRz0d0yr8MePMEpptRrtxvty_Vbri4wGgql5R25r9KYKG9WueJE5yCO08f4K6PbQfqUZ3C5ZBXtwlA4KgSz5gcrY7sn28hL3EedaNoJNbIYPvQv1fSpB9Qf42MlXNZHab3eQxVoD1Flzy43Yt7FlTa2rXghlN6yy-6mXZeGk7Xhhi6oXyPZdlDC5ALR6IhSMxQ0anwG8OOnk_2ACXuVWprYV39N2IQCtCu5TTqkEsadNS3vKVc4OEwzafidMJxQFApAlpQ3CJrYQNzrkjtSh208-X5Dx8QJIpnXDMUYKMNYMWh7P8jw3O29YLlFSewb5OU7f4l0lt05rsdxT7m000F__0m00" alt="Diagram">
 </p>
 
 #### 👉 Giải thích:
