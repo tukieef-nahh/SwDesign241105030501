@@ -121,49 +121,75 @@
 👉 **Nhiệm vụ và các thuộc tính của các lớp phân tích:** 
 - **Employee (Entity):**  
   + Các thuộc tính:
-    - 
+    - `empID`
+    - `name`
+    - `bank info`
+    - `social security number`
+    - `address`
+    - `phone number`
+    - `email`
+    - `payment method`
   + Các phương thức:
-    - 
+    - `is payday()`
+    - `get pay amount()`
+    - `get payment method()`
+    - `get bank info()`
+    - `get curent timecard()`
+    - `calculatePay()`
 
 - **Timecard (Entity):**  
   + Các thuộc tính:
-    - 
+    - `hours worked`
+    - `pay period`
+  + Các phương thức:
+    - `save()`
+    - `get timecard info()`
+    - `update timecard()`
 
 - **Paycheck (Entity):**  
   + Các thuộc tính:
-    - 
+    - `amount`
+  + Các phương thức:
+    - `create with amount()`
 
 - **HourlyEmployee (Entity):**  
   + Các thuộc tính:
-    - 
+    - `hourlyRate`
+  + Các phương thức:
+    - `getHourlyRate()`
 
 - **SalariedEmployee (Entity):**  
   + Các thuộc tính:
-    - 
+    - `annualSalary`
+  + Các phương thức:
+    - `getAnnualSalary()`
 
 - **CommissioneEmployee (Entity):**  
   + Các thuộc tính:
-    - 
+    - `commissionRate`
+  + Các phương thức:
+    - `getPurchaseOrders()`
+    - `getCommissionRate()`
 
 - **PurchaseOrder (Entity):**  
-  + Các thuộc tính:
-    - 
+  + Các phương thức:
+    - `get PO info()`
 
 - **SystemClockInterface (Boundary):**  
   + Các phương thức:
-    - 
+    - `start()`
 
 - **BankSystem (Boundary):**  
   + Các phương thức:
-    - 
+    - `send bank transaction(thePaycheck: Paycheck, theBankInfo)`
 
 - **PrinterInterface (Boundary):**  
   + Các phương thức:
-    - 
+    - `print()`
 
 - **PayRollController (Control):**  
   + Các phương thức:
-    - 
+    - `run payroll()`
       
 👉 **Xác định quan hệ giữa các lớp phân tích:** 
 - 
@@ -171,7 +197,7 @@
 👉 **Class diagram mô tả các lớp phân tích và giải thích:** 
 
 <p align="center">
-  <img src="https://www.planttext.com/api/plantuml/png/d5HBRjmm3Dth5CAi9a4TDDiksZI30CagWwONO6Ic5aOVGvy6HfkJTT4ZzGgLD9OjsKONdStGVEGZzIZgpw_VDzQ1SLuAOazSKQCj4i84M4kV1kjG7eHcfmVbqBm0G_g3qFHBQViByZO67msFCUl0FW95u2seqvbvvaBLqkVWfyw0ii0SrshlEZp2m3fafmyqM-zeS4UA1_MY8sbkDWGOBSH1AnV_qKpinYlQdz5zcN4dUw47p9qga9WCp7xUfk_K60_bqfVLZ8C8BJDlk1keyl8PJOAWRGrQc-o-qmfB42LmSOPWaAWSbUWwVIxHD6Elt4QuXM5_yMbqVKCNVHIazad8obqmLT3KTEKDFPkOuBX41cPEOI2O5-2YuiMixhKtObW8rINdbn1SznuAt4zGGV840Wp7Ta43IdaG2HnMH9yBiA0wQ2cvjU5shEZO16rsTlI6TM3nqRHeR2dAeKeiYdqTHIgERUchDYTiynnfZuOlPsZXErQgPxNhUVY-3VNAKRpDLpdTzInK6dnTWncCoQ_STVF5cFBBiuuafHRq-9XR2TkmkUMxwwkhwrt8ojPglSXwuNRlfwHWNUwc3IFJh4QsoyRtEIZB_C-WB0cPj1c1iTXsXyidgMxmlquLhFa18ulzQ9gV7-T3h-vz3M_UvHIoJDmEtLAf73mXD-5PZG_xNm000F__0m00" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/d5HBRjmm3Dth5CAi9a4TDDiksYJJ0fbL1aqlmCXCBLWVGvy6HfkJTT4ZzGgLD9OjVz15PZCq7_b8FOhw-_lFZNLWd9U2s9OhQhH5GfW0Q-bZRntAWz2iFIg7vXaOqf-4fbzAsr-Gro7uP7YCMGTs4IW2xq2rP-Q92rLDduAVEWFA0dDSgxrhy0GzQv2r7sYstj7WZXH7zQmZQMus11Wjn44h5__HZEp6AzgTqNsPyKLsGlUOErKWCHaek-FdPAMMU2YKlgnc74Hebdd3NK-Lbqze4WHrRT3QP7UDLbY2A86BCmIzHEMeHDVeEhcgQkYIsmZNqEylFWskx-YYZuBKFaauSnTCCsXiUkODFPkOuBX41cPAOI2O5-2YriMKxhKtebz8r2Jdrn0yxpqKk1-XWkGH11YEzO86bF8W4jYlY6uBiA0wQ2cvjU5UhEZO26rsTlA6DM3nmTHeR2dAOPPO5FisY5GSsz8NRLgiynnfXuOlPsZX1yvKpshFv-6xEjGhH_4wNU9qoxDGQV3p6inWJ7xXhfaknfXVddKWARMWfuVSIjY3pVtUNLzTNUz2LhPMYqNMgxPxFoO5wt8txXOPPpMmNLQ-oq5Pvly6PKd8gCq03CMsErm-HlC6ttIgO4rF5rdiHrNz-ZWTUdNlv_3cNKuXoyJjq2sLoi4JSXCUrFYa_mC00F__0m00" alt="Diagram">
 </p>
 
 - **Giải thích:** 
