@@ -7,7 +7,7 @@
 
 ### ⭐️ 1.1. Phân tích ca sử dụng Maintain Timecard 📑
 
-#### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:** 
+#### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:
 - **Entity classes:** 
   + **Employee:** Lưu trữ thông tin nhân viên.
   + **Timcard:** Chứa thông tin chấm công, giờ làm việc.
