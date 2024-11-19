@@ -5,40 +5,72 @@
 
 ## ⭐️ 1. Tiến hành phân tích tất cả các ca sử dụng còn lại trong hệ thống Payroll System 📈
 
-### ⭐️ 1.1. Phân tích ca sử dụng Create Administrative Report 📑
+### ⭐️ 1.1. Phân tích ca sử dụng Maintain Timecard 📑
 
-#### 👉 Các lớp phân tích cho ca sử dụng Create Administrative Report:** 
+#### 👉 Các lớp phân tích cho ca sử dụng Maintain Timecard:** 
 - **Entity classes:** 
-  + **Employee:** 
+  + **Employee:**
+  + **Timcard:**
 
 - **Boundary classes:** 
-  + **CreateEmployeeBoundaryForm:**  
+  + **ProjectManagementDatabase:**
+  + **TimecardForm:**
 
 - **Control classes:** 
-  + **CreateEmployeeController:**  
+  + **TimeCardController:**  
 
-👉 **Sequence diagram cho ca sử dụng Create Employee:** 
+👉 **Sequence diagram cho ca sử dụng Maintain Timecard:** 
 
 <p align="center">
-  <img src="" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/d9HBKeD048RtSuhUgGjJPN2LXPKg7pij5rvW0fq4PMQedaRbR2uyabUmWK0c8P0e1Ojv_5__tJt3pzVttBCcBaoc_5jgWPn7fNJCZk3Uv9ah4TN25JRHL0Ayf0PZJSc38wDYPvbSratUDkCCIQ7bbCjkfHstHD0UqEHRy3EvLupvKLkzGYExxpJhXHOlZPNUkb8Tw_9cnzOChkhNwDIoVC2RnVCBfSADeN1hNRGJKQ-G8Iw895G8wE-lA99ABHiHwepX2J_0MOIOK3Cca2uXPKWSUdl6W9-fPmNo2AwY3jQaYJKTZ8KswOoE93c9Pa381TaUP23FlJ8BudeOCLZhLYq99AdFCrt-eqNH9lkrffLKr2Ne1zipMiYeQzekQb1qaDYGfjjg1B0-QYIji2aXuxI6H653Gld8RH7JOabuQrUGXwNSjetK5cQ1v4zjohIgP94dShQFNvbsjfOT5evubY9v_Ov_FZTri_ULnmn6ZS5UmBdSi-g_-Gi00F__0m00" alt="Diagram">
 </p>
 
 👉 **Nhiệm vụ và các thuộc tính của các lớp phân tích:** 
 - **Employee (Entity):**
   + Các thuộc tính:
-    - `empID`: ID của nhân viên.
-    - `name`: Tên nhân viên.
-    - 
+    - `empID`
+    - `name`
+    - `bank info`
+    - `social security number`
+    - `address`
+    - `phone number`
+    - `email`
+    - `payment method`
   + Các phương thức:
-    - 
+    - `is payday()`
+    - `get pay amount()`
+    - `get payment method()`
+    - `get bank info()`
+    - `get curent timecard()`
+    - `calculatePay()`
 
-- **CreateEmployeeBoundaryForm (Boundary):**  
+- **Timecard (Entity):**
+  + Các thuộc tính:
+    - `hours worked`
+    - `pay period`
   + Các phương thức:
-    - 
+    - `save()`
+    - `get timecard info()`
+    - `update timecard()`
 
-- **CreateEmployeeController (Control):**  
+- **ProjectManagenmaentDatabase (Boundary):**  
   + Các phương thức:
-    - 
+    - `get charge codes()`
+   
+- **TimecardForm (Boundary):**  
+  + Các phương thức:
+    - `display timecard()`
+    - `open()`
+    - `enter hours for charge numbers()`
+    - `maintain timecard()`
+    - `save timecard()`
+
+- **TimecardController (Control):**  
+  + Các phương thức:
+    - `get curent timecard()`
+    - `get charge codes()`
+    - `update timecard()`
+    - `save timecard()`
 
 👉 **Xác định quan hệ giữa các lớp phân tích:** 
 - 
@@ -46,29 +78,41 @@
 👉 **Class diagram mô tả các lớp phân tích và giải thích:** 
 
 <p align="center">
-  <img src="" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/Z9HBRjim48RtFCN0cpG1xCJRmaY2vW5qKI08Ue4nER5OymMIIY0KFLaNELAl48fwc8xbD08aaFmvCnzdXlhtz_KwHFInreg5hJJWRI36Jk2RhOr0ty2DmX0ORx_mKshYwCMzzHfMgtM_v_8IVZD8p_av21cSmWPYl_NBwQ1OHsOt8nF9GsLh7-39Uk0L-Ws1gVMQVDZjqoXDJE-4mu3FL2x_QRblh8dUgadiNbCfy6h5kqd9lg48lFO-iKs4osf7oQsWWh5s0YDzbl3EH1dxlD9xn0H6MH-vkXIzMBybaHTSoguZBwrWPPnzq24eIFDaFo9DI1t1dNRADaI710OrvG5fz_qsZzPejjbrdWNB9Ie8b9BN7gqhOfPG24-f41cyiePAaL9nrN0ctMPTKwoASydGAWARg_tJjIb0dRel7gmNRlQr4VbTHO_McwFYjKhfUi2cJDI3jx-8nnzeS4Djk5kCkCP0Hsx4HD_aFdYav5nQ4ohf0jkxMhFbOh6SmNm-Z0uxc4qqzUnYiJZhp2wosL7KOzRBqdhioQymf6bO-ezz1prq51jRgnVEvhKRO4UFx9gCQ7z3Rm000F__0m00" alt="Diagram">
 </p>
 
 - **Giải thích:** 
-  + <i> CreateEmployeeBoundaryForm: </i> 
+  + _ProjectManagenmaentDatabase:_
+ 
+  +  _TimecardForm:_
 
-  + <i> CreateEmployeeController: </i> 
+  + _TimecardController:_ 
 
-  + <i> Employee: </i> 
-  
-## ⭐️ 1.2 Phân tích ca sử dụng Create Employee Report 📇
+  + _Employee:_
 
-#### 👉 Các lớp phân tích cho ca sử dụng Create Employee Report:
+  + _Timecard:_
+
+## ⭐️ 1.2 Phân tích ca sử dụng Run Payroll 📇
+
+#### 👉 Các lớp phân tích cho ca sử dụng Run Payroll:
 - **Entity classes:** 
-  + 
+  + **Employee:**
+  + **Timcard::**
+  + **Paycheck:**
+  + **HourlyEmployee:**
+  + **SalariedEmployee:**
+  + **CommissioneEmployee:**
+  + **PurchaseOrder:**
 
 - **Boundary classes:** 
-  + **TimecardBoundaryForm:**  
+  + **SystemClockInterface:**
+  + **BankSystem:**
+  + **PrinterInterface:** 
 
 - **Control classes:** 
-  + **TimecardController:**  
+  + **PayRollController:**  
 
-👉 **Sequence diagram cho ca sử dụng Create Employee Report:** 
+👉 **Sequence diagram cho ca sử dụng Run Payroll:** 
 
 <p align="center">
   <img src="" alt="Diagram">
@@ -85,15 +129,39 @@
   + Các thuộc tính:
     - 
 
-- **Project (Entity):**  
+- **Paycheck (Entity):**  
   + Các thuộc tính:
     - 
- 
-- **TimecardBoundaryForm (Boundary):**  
+
+- **HourlyEmployee (Entity):**  
+  + Các thuộc tính:
+    - 
+
+- **SalariedEmployee (Entity):**  
+  + Các thuộc tính:
+    - 
+
+- **CommissioneEmployee (Entity):**  
+  + Các thuộc tính:
+    - 
+
+- **PurchaseOrder (Entity):**  
+  + Các thuộc tính:
+    - 
+
+- **SystemClockInterface (Boundary):**  
   + Các phương thức:
     - 
 
-- **TimecardController (Control):**  
+- **BankSystem (Boundary):**  
+  + Các phương thức:
+    - 
+
+- **PrinterInterface (Boundary):**  
+  + Các phương thức:
+    - 
+
+- **PayRollController (Control):**  
   + Các phương thức:
     - 
       
@@ -103,37 +171,32 @@
 👉 **Class diagram mô tả các lớp phân tích và giải thích:** 
 
 <p align="center">
-  <img src="" alt="Diagram">
+  <img src="https://www.planttext.com/api/plantuml/png/d5HBRjmm3Dth5CAi9a4TDDiksZI30CagWwONO6Ic5aOVGvy6HfkJTT4ZzGgLD9OjsKONdStGVEGZzIZgpw_VDzQ1SLuAOazSKQCj4i84M4kV1kjG7eHcfmVbqBm0G_g3qFHBQViByZO67msFCUl0FW95u2seqvbvvaBLqkVWfyw0ii0SrshlEZp2m3fafmyqM-zeS4UA1_MY8sbkDWGOBSH1AnV_qKpinYlQdz5zcN4dUw47p9qga9WCp7xUfk_K60_bqfVLZ8C8BJDlk1keyl8PJOAWRGrQc-o-qmfB42LmSOPWaAWSbUWwVIxHD6Elt4QuXM5_yMbqVKCNVHIazad8obqmLT3KTEKDFPkOuBX41cPEOI2O5-2YuiMixhKtObW8rINdbn1SznuAt4zGGV840Wp7Ta43IdaG2HnMH9yBiA0wQ2cvjU5shEZO16rsTlI6TM3nqRHeR2dAeKeiYdqTHIgERUchDYTiynnfZuOlPsZXErQgPxNhUVY-3VNAKRpDLpdTzInK6dnTWncCoQ_STVF5cFBBiuuafHRq-9XR2TkmkUMxwwkhwrt8ojPglSXwuNRlfwHWNUwc3IFJh4QsoyRtEIZB_C-WB0cPj1c1iTXsXyidgMxmlquLhFa18ulzQ9gV7-T3h-vz3M_UvHIoJDmEtLAf73mXD-5PZG_xNm000F__0m00" alt="Diagram">
 </p>
 
 - **Giải thích:** 
-  + <i> TimecardBoundaryForm: </i> 
+  + _Employee:_ 
 
-  + <i> TimecardController: </i> 
+  + _Timecard:_ 
 
-  + <i> Timecard: </i> 
+  + _Paycheck:_ 
 
-  + <i> Project: </i> 
+  + _HourlyEmployee:_
 
-## ⭐️ 1.7 Hợp nhất kết quả phân tích 📁
+  + _SalariedEmployee:_
 
-👉 **Hợp nhất các lớp phân tích:** 
-- **Lớp chung:** 
-  + 
-- **Điểm hợp nhất:** 
-  + 
+  + _CommissioneEmployee:_
 
+  + _PurchaseOrder:_
 
-- 
+  + _SystemClockInterface:_
 
-<p align="center">
-  <img src="" alt="Diagram">
-</p>
+  + _BankSystem:_
 
+  + _PrinterInterface:_
 
-
-
-
+  + _PayRollController:_
+  
 
 ## ⭐️ 2. Viết code Java mô phỏng ca sử dụng Maintain Timecard 🔬
 
@@ -373,4 +436,4 @@ Lớp `Project` đại diện cho dự án mà nhân viên có thể làm việc
 - Nếu tổng số giờ đã làm vượt quá giới hạn cho phép của nhân viên `canWorkMoreHours` trả về `false`, `TimecardController` hiển thị thông báo lỗi qua `displayErrorMessage`.
 - Nếu tất cả điều kiện hợp lệ, `TimecardController` gọi `submitTimecard` trong `Timecard` để cập nhật trạng thái `timecard` thành "submitted" và gán ngày nộp `submittedDate` là ngày hiện tại. Cuối cùng, `TimecardBoundaryForm` hiển thị thông báo thành công `displaySuccessMessage`.
 
-#### ⭐️ <i> From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111 </i> 💙
+#### ⭐️ _From [Trần Thị Thanh Kiều](https://github.com/tukieef-nah) - 4451051111_ 💙
