@@ -62,7 +62,7 @@
   - `Pending`, `Paid`, `Error`.
 - **Timecard**:
   - `New`, `Submitted`, `Validated`.
-  - 
+    
 ## ⭐️ 5. Define Attributes:
 #### 👉 Thuộc tính cho các lớp:
 - **Payroll Calculation Subsystem**
