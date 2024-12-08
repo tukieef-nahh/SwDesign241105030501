@@ -46,15 +46,15 @@
 
 ## ⭐️ 3. Define Methods:
 #### 👉 Mô tả chi tiết các phương thức:
-- calculatePay:
-  - Input: Employee
-  - Output: Paycheck
-  - Mô tả: Tính toán số tiền lương dựa trên loại nhân viên và thông tin giờ làm việc từ Timecard.
+- **`calculatePay`:**
+  - Input: `Employee`
+  - Output: `Paycheck`
+  - Mô tả: Tính toán số tiền lương dựa trên loại nhân viên và thông tin giờ làm việc từ `Timecard`.
 
-- processDirectDeposit:
-  - Input: Paycheck, BankInformation
+- **`processDirectDeposit`:**
+  - Input: `Paycheck`, `BankInformation`
   - Output: None
-  - Mô tả: Xử lý thanh toán trực tiếp qua ngân hàng dựa trên thông tin paycheck và tài khoản ngân hàng.
+  - Mô tả: Xử lý thanh toán trực tiếp qua ngân hàng dựa trên thông tin `paycheck` và tài khoản ngân hàng.
 
 ## ⭐️ 4. Define States:
 #### 👉 Trạng thái chính của các lớp quan trọng:
